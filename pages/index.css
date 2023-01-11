@@ -14,3 +14,11 @@
   @import url(../blocks/profile-info/__title/profile-info__title.css);
   @import url(../blocks/profile-info/__subtitle/profile-info__subtitle.css);
   @import url(../blocks/profile-info/__button-edit/profile-info__button-edit.css);
+
+/*plases*/
+@import url(../blocks/plases/plases.css);
+@import url(../blocks/plases-card/plases-card.css);
+  @import url(../blocks/plases-card/__img/plases-card__img.css);
+@import url(../blocks/card-title/card-title.css);
+  @import url(../blocks/card-title/__title/card-title__title.css);
+  @import url(../blocks/card-title/__like/card-title__like.css);

@@ -1,0 +1,8 @@
+.card-title {
+  display: flex;
+  padding-top: 25px;
+  padding-left: 21px;
+  justify-content:space-between;
+  align-items: center;
+  max-width: 246px;
+}
