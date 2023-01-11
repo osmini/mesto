@@ -3,3 +3,4 @@
 @import url(../blocks/body/body.css); /*тело станицы сайта*/
 
 @import url(../blocks/header/header.css); /*header*/
+  @import url(../blocks/header/__logo/header__logo.css); 
