@@ -1,5 +1,6 @@
 @import url(../vendor/normalize.css); /*сброс стандартных стилей*/
-
 @import url(../vendor/fonts.css); /*подключение шрифтов*/
+@import url(../blocks/body/body.css); /*тело станицы сайта*/
 
-@import url(../blocks/body/body.css); /*подключение шрифтов*/
+@import url(../blocks/header/header.css); /*header*/
+  @import url(../blocks/header/__logo/header__logo.css); 
