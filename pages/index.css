@@ -22,3 +22,7 @@
 @import url(../blocks/card-title/card-title.css);
   @import url(../blocks/card-title/__title/card-title__title.css);
   @import url(../blocks/card-title/__like/card-title__like.css);
+
+/*pfooter*/
+@import url(../blocks/footer/footer.css);
+  @import url(../blocks/footer/__copyraite/footer__copyraite.css);
