@@ -20,16 +20,16 @@
   
       <div class="profile-info">
         <h1 class="profile-info__title">Жак-Ив Кусто</h1>
-        <img class="profile-info__button-edit animation-hover" src="./images/Edit Button.svg" alt="кнопка изменение информации профиля">
+        <img class="profile-info__button-edit animation-hover" src="./images/EditButton.svg" alt="кнопка изменение информации профиля">
         <p class="profile-info__subtitle">Исследователь океана</p>
       </div>
   
-      <div class="profile__button-add animation-hover"><div>
+      <div class="profile__button-add animation-hover"></div>
     </section>
   
     <section class="plases" aria-label="Карточки мест">
   
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
         <div class="card-title">
           <p class="card-title__title">Карачаевск</p>
@@ -37,7 +37,7 @@
         </div>
       </article>
 
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
         <div class="card-title">
           <p class="card-title__title">Гора Эльбрус</p>
@@ -45,7 +45,7 @@
         </div>
       </article>
 
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
         <div class="card-title">
           <p class="card-title__title">Домбай</p>
@@ -53,7 +53,7 @@
         </div>
       </article>
 
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
         <div class="card-title">
           <p class="card-title__title">Гора Эльбрус</p>
@@ -61,7 +61,7 @@
         </div>
       </article>
 
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
         <div class="card-title">
           <p class="card-title__title">Домбай</p>
@@ -69,7 +69,7 @@
         </div>
       </article>
 
-      <article class="plases-card">
+      <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаево-Черкессово">
         <div class="card-title">
           <p class="card-title__title">Карачаево-Черкессово</p>
@@ -79,13 +79,13 @@
 
     </section>
 
-    <section class="pop-up close-popup">
-      <form class="eddit-form" action="">
+    <section class="pop-up close-popup" aria-label="карточка редактирования профиля">
+      <form class="eddit-form">
         <div class="eddit-form__close-button animation-hover"></div>
         <p class="eddit-form__title">Редактировать профиль</p>
         <input class="eddit-form__input" type="text" value="Жак-Ив Кусто">
         <input class="eddit-form__input" type="text" value="Исследователь океана">
-        <button class="eddit-form__button hover-batton" tupe="submit">Сохранить</button>
+        <button class="eddit-form__button hover-batton">Сохранить</button>
       </form>
 
     </section>
