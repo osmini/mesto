@@ -1,0 +1,47 @@
+.eddit-form__close-button {
+  position: absolute;
+  right: -20px;
+  top: -15px;
+}
+
+.eddit-form__close-button::before,
+.eddit-form__close-button::after {
+  content: '';
+  position: relative;
+  top: -10px;
+  right: -10px;
+  display: block;
+  width: 32px;
+  height: 4px;
+  background: #fff;
+}
+
+.eddit-form__close-button::before {
+  transform: rotate(45deg);
+  right: -10px;
+  top: -6px;
+}
+
+.eddit-form__close-button::after {
+  transform: rotate(135deg);
+}
+
+@media (max-width:768px) {
+
+  .eddit-form__close-button {
+    right: -2px;
+  }
+
+  .eddit-form__close-button::before,
+  .eddit-form__close-button::after {
+    top: -10px;
+    right: -2px;
+    width: 26px;
+    height: 3px;
+  }
+  
+  .eddit-form__close-button::before {
+    right: -3px;
+    top: -6px;
+  }
+}
