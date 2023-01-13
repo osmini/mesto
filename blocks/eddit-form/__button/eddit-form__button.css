@@ -10,6 +10,7 @@
   color: #fff;
   margin-top: 48px;
   border: none;
+  cursor: pointer;
 }
 
 @media (max-width:768px) {

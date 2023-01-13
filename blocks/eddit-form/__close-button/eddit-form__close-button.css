@@ -2,6 +2,7 @@
   position: absolute;
   right: -20px;
   top: -15px;
+  cursor: pointer;
 }
 
 .eddit-form__close-button::before,

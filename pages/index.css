@@ -1,6 +1,8 @@
 @import url(../vendor/normalize.css); /*сброс стандартных стилей*/
 @import url(../vendor/fonts.css); /*подключение шрифтов*/
 @import url(../blocks/body/body.css); /*тело станицы сайта*/
+@import url(../blocks/animation-hover/animation-hover.css); /*анимация наведения*/
+@import url(../blocks/hover-batton/hover-batton.css); /*анимация наведения на кнопку сохранить*/
 
 /*header*/
 @import url(../blocks/header/header.css);
