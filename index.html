@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="body">
+  
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="логотип Mesto">
+  </header>
+
+  <main>
+
+    <section class="profile">
+      <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар автора">
+  
+      <div class="profile-info">
+        <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+        <img class="profile-info__button-edit animation-hover" src="./images/EditButton.svg" alt="кнопка изменение информации профиля">
+        <p class="profile-info__subtitle">Исследователь океана</p>
+      </div>
+  
+      <div class="profile__button-add animation-hover"></div>
+    </section>
+  
+    <section class="plases" aria-label="Карточки мест">
+  
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
+        <div class="card-title">
+          <p class="card-title__title">Карачаевск</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
+        <div class="card-title">
+          <p class="card-title__title">Гора Эльбрус</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
+        <div class="card-title">
+          <p class="card-title__title">Домбай</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
+        <div class="card-title">
+          <p class="card-title__title">Гора Эльбрус</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
+        <div class="card-title">
+          <p class="card-title__title">Домбай</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+      <article class="plases-card" aria-label="места России">
+        <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаево-Черкессово">
+        <div class="card-title">
+          <p class="card-title__title">Карачаево-Черкессово</p>
+          <div class="card-title__like animation-hover"></div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="pop-up close-popup" aria-label="карточка редактирования профиля">
+      <form class="eddit-form">
+        <div class="eddit-form__close-button animation-hover"></div>
+        <p class="eddit-form__title">Редактировать профиль</p>
+        <input class="eddit-form__input" type="text" value="Жак-Ив Кусто">
+        <input class="eddit-form__input" type="text" value="Исследователь океана">
+        <button class="eddit-form__button hover-batton">Сохранить</button>
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyraite">&#169; 2022 Mesto Russio</p>
+  </footer>
+
+  <script src="./blocks/pop-up/popup.js"></script>
+</body>
+</html>

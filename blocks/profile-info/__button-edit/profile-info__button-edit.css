@@ -1,0 +1,10 @@
+.profile-info__button-edit {
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .profile-info__button-edit {
+    width: 18px;
+  }
+}
