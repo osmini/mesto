@@ -1,0 +1,18 @@
+.eddit-form {
+  position: absolute;
+  width: 430px;
+  height: 330px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 auto;
+  left:0;
+  right:0;
+  top: calc(50% - 165px);
+  text-align: center;
+}
+
+@media (max-width:768px) {
+  .eddit-form {
+    width: 282px;
+  }
+}
