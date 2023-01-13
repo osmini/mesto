@@ -31,6 +31,7 @@
 
 /*pop-up*/
 @import url(../blocks/pop-up/pop-up.css);
+  @import url(../blocks/pop-up/close-popup/close-popup.css);  
 @import url(../blocks/eddit-form/eddit-form.css);
   @import url(../blocks/eddit-form/__close-button/eddit-form__close-button.css);
   @import url(../blocks/eddit-form/__title/eddit-form__title.css);
