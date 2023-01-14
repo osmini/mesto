@@ -1,47 +1,46 @@
 let popup = document.querySelector(".pop-up");
 let popupOpen = document.querySelector(".profile-info__button-edit");
-let popupCloses = document.querySelector(".eddit-form__close-button");
-
-popupOpen.addEventListener("click", openPopup);
-popupCloses.addEventListener("click", closesPopup);
+let popupCloses = document.querySelector(".pop-up__close-button");
+// Находим форму в DOM
+let formElement = document.querySelector(".pop-up__eddit-form");
+// Находим поля формы в DOM
+let input = document.querySelectorAll(".pop-up__input");
+let nameInput = input[0];
+let jobInput = input[1];
+// поля информации из профиля
+let infoTitle = document.querySelector(".profile-info__title");
+let infoSubtitle = document.querySelector(".profile-info__subtitle");
 
 function openPopup() {
-  popup.classList.remove("close-popup");
+  popup.classList.remove("pop-up_active");
+
+  nameInput.textContent = infoTitle.value;
+  jobInput.textContent = infoSubtitle.value;
 }
 
 function closesPopup() {
-  popup.classList.add("close-popup");
+  popup.classList.add("pop-up_active");
 }
-
-// Находим форму в DOM
-let formElement = document.querySelector(".eddit-form");
-// Находим поля формы в DOM
-let Input = document.querySelectorAll(".eddit-form__input");
-let nameInput = Input[0];
-let jobInput = Input[1];
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function handleFormSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-    let ValNameInput = nameInput.value;
-    let ValJobInput = jobInput.value;
-
-    // Выберите элементы, куда должны быть вставлены значения полей
-    let infoTitle = document.querySelector(".profile-info__title");
-    let infoSubtitle = document.querySelector(".profile-info__subtitle");
+    let valNameInput = nameInput.value;
+    let valJobInput = jobInput.value;
 
     // Вставьте новые значения с помощью textContent
-    infoTitle.textContent = ValNameInput;
-    infoSubtitle.textContent = ValJobInput;
+    infoTitle.textContent = valNameInput;
+    infoSubtitle.textContent = valJobInput;
 
-    console.log(infoTitle);
-
-    popup.classList.add("close-popup");
+    popup.classList.add("pop-up_active");
   }
 
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
+
+popupOpen.addEventListener("click", openPopup);
+popupCloses.addEventListener("click", closesPopup);

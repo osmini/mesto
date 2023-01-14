@@ -1,18 +1,18 @@
-.eddit-form {
-  position: absolute;
+.pop-up__eddit-form {
+  display: flex;
+  flex-direction:column;
+  align-items:center;
   width: 430px;
-  height: 330px;
   background-color: #fff;
   border-radius: 10px;
   margin: 0 auto;
-  left:0;
-  right:0;
-  top: calc(50% - 165px);
   text-align: center;
+  margin-top: 300px;
 }
 
 @media (max-width:768px) {
-  .eddit-form {
+  .pop-up__eddit-form {
     width: 282px;
+    margin-top: 200px;
   }
 }

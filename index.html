@@ -20,72 +20,72 @@
   
       <div class="profile-info">
         <h1 class="profile-info__title">Жак-Ив Кусто</h1>
-        <img class="profile-info__button-edit animation-hover" src="./images/EditButton.svg" alt="кнопка изменение информации профиля">
+        <input class="profile-info__button-edit animation-hover" type="image" src="./images/EditButton.svg" aria-label="кнопка изменение информации профиля">
         <p class="profile-info__subtitle">Исследователь океана</p>
       </div>
   
-      <div class="profile__button-add animation-hover"></div>
+      <input class="profile__button-add animation-hover" type="text" aria-label="кнопка добавления места">
     </section>
   
     <section class="plases" aria-label="Карточки мест">
   
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
-        <div class="card-title">
-          <p class="card-title__title">Карачаевск</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Карачаевск</h2>
+          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
         </div>
       </article>
 
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
-        <div class="card-title">
-          <p class="card-title__title">Гора Эльбрус</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Гора Эльбрус</h2>
+          <input class="plases-card__like hover-like" type="text" ria-label="кнопка лайк">
         </div>
       </article>
 
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
-        <div class="card-title">
-          <p class="card-title__title">Домбай</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Домбай</h2>
+          <input class="plases-card__like hover-like" type="text" ria-label="кнопка лайк">
         </div>
       </article>
 
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
-        <div class="card-title">
-          <p class="card-title__title">Гора Эльбрус</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Гора Эльбрус</h2>
+          <input class="plases-card__like hover-like" type="text" ria-label="кнопка лайк">
         </div>
       </article>
 
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
-        <div class="card-title">
-          <p class="card-title__title">Домбай</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Домбай</h2>
+          <input class="plases-card__like hover-like" type="text" ria-label="кнопка лайк">
         </div>
       </article>
 
       <article class="plases-card" aria-label="места России">
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаево-Черкессово">
-        <div class="card-title">
-          <p class="card-title__title">Карачаево-Черкессово</p>
-          <div class="card-title__like animation-hover"></div>
+        <div class="plases-card__card-title">
+          <h2 class="plases-card__title">Карачаево-Черкессово</h2>
+          <input class="plases-card__like hover-like" type="text" ria-label="кнопка лайк">
         </div>
       </article>
 
     </section>
 
-    <section class="pop-up close-popup" aria-label="карточка редактирования профиля">
-      <form class="eddit-form">
-        <div class="eddit-form__close-button animation-hover"></div>
-        <p class="eddit-form__title">Редактировать профиль</p>
-        <input class="eddit-form__input" type="text" value="Жак-Ив Кусто">
-        <input class="eddit-form__input" type="text" value="Исследователь океана">
-        <button class="eddit-form__button hover-batton">Сохранить</button>
+    <section class="pop-up pop-up_active" aria-label="карточка редактирования профиля">
+      <form class="pop-up__eddit-form">
+        <input class="pop-up__close-button animation-hover" type="text" ria-label="кнопка закрыть попап">
+        <h2 class="pop-up__title">Редактировать профиль</h2>
+        <input class="pop-up__input" type="text" value="Жак-Ив Кусто" name="pop-up__eddit-form">
+        <input class="pop-up__input" type="text" value="Исследователь океана" name="pop-up__eddit-form">
+        <button class="pop-up__button hover-batton" type="submit">Сохранить</button>
       </form>
 
     </section>

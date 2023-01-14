@@ -3,6 +3,7 @@
 @import url(../blocks/body/body.css); /*тело станицы сайта*/
 @import url(../blocks/animation-hover/animation-hover.css); /*анимация наведения*/
 @import url(../blocks/hover-batton/hover-batton.css); /*анимация наведения на кнопку сохранить*/
+@import url(../blocks/hover-like/hover-like.css); /*анимация наведения на кнопку лайк*/
 
 /*header*/
 @import url(../blocks/header/header.css);
@@ -21,9 +22,9 @@
 @import url(../blocks/plases/plases.css);
 @import url(../blocks/plases-card/plases-card.css);
   @import url(../blocks/plases-card/__img/plases-card__img.css);
-@import url(../blocks/card-title/card-title.css);
-  @import url(../blocks/card-title/__title/card-title__title.css);
-  @import url(../blocks/card-title/__like/card-title__like.css);
+  @import url(../blocks/plases-card/__card-title/plases-card__card-title.css);
+  @import url(../blocks/plases-card/__title/plases-card__title.css);
+  @import url(../blocks/plases-card/__like/plases-card__like.css);
 
 /*footer*/
 @import url(../blocks/footer/footer.css);
@@ -31,9 +32,9 @@
 
 /*pop-up*/
 @import url(../blocks/pop-up/pop-up.css);
-  @import url(../blocks/pop-up/close-popup/close-popup.css);
-@import url(../blocks/eddit-form/eddit-form.css);
-  @import url(../blocks/eddit-form/__close-button/eddit-form__close-button.css);
-  @import url(../blocks/eddit-form/__title/eddit-form__title.css);
-  @import url(../blocks/eddit-form/__input/eddit-form__input.css);
-  @import url(../blocks/eddit-form/__button/eddit-form__button.css);
+  @import url(../blocks/pop-up/pop-up_active/pop-up_active.css);
+  @import url(../blocks/pop-up/__eddit-form/pop-up__eddit-form.css);
+  @import url(../blocks/pop-up/__close-button/pop-up__close-button.css);
+  @import url(../blocks/pop-up/__title/pop-up__title.css);
+  @import url(../blocks/pop-up/__input/pop-up__input.css);
+  @import url(../blocks/pop-up/__button/pop-up__button.css);

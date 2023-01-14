@@ -1,4 +1,4 @@
-.eddit-form__input {
+.pop-up__input {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -10,7 +10,7 @@
 }
 
 @media (max-width:768px) {
-  .eddit-form__input {
+  .pop-up__input {
     font-size: 14px;
     line-height: 17px;
     width: 238px;
