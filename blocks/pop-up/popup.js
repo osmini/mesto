@@ -14,8 +14,8 @@ let infoSubtitle = document.querySelector(".profile-info__subtitle");
 function openPopup() {
   popup.classList.remove("pop-up_active");
 
-  nameInput.textContent = infoTitle.value;
-  jobInput.textContent = infoSubtitle.value;
+  nameInput.value = infoTitle.textContent;
+  jobInput.value = infoSubtitle.textContent;
 }
 
 function closesPopup() {

@@ -20,11 +20,11 @@
   
       <div class="profile-info">
         <h1 class="profile-info__title">Жак-Ив Кусто</h1>
-        <input class="profile-info__button-edit animation-hover" type="image" src="./images/EditButton.svg" aria-label="кнопка изменение информации профиля" alt="кнопка">
+        <button class="profile-info__button-edit animation-hover" type="button" aria-label="кнопка изменение информации профиля" alt="кнопка"></button>
         <p class="profile-info__subtitle">Исследователь океана</p>
       </div>
   
-      <input class="profile__button-add animation-hover" type="text" aria-label="кнопка добавления места">
+      <button class="profile__button-add animation-hover" type="button" aria-label="кнопка добавления места"></button>
     </section>
   
     <section class="plases" aria-label="Карточки мест">
@@ -33,7 +33,7 @@
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Карачаевск</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
@@ -41,7 +41,7 @@
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Гора Эльбрус</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
@@ -49,7 +49,7 @@
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Домбай</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
@@ -57,7 +57,7 @@
         <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Гора Эльбрус</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
@@ -65,7 +65,7 @@
         <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Домбай</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
@@ -73,20 +73,22 @@
         <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаево-Черкессово">
         <div class="plases-card__card-title">
           <h2 class="plases-card__title">Карачаево-Черкессово</h2>
-          <input class="plases-card__like hover-like" type="text" aria-label="кнопка лайк">
+          <button class="plases-card__like hover-like" type="text" aria-label="кнопка лайк"></button>
         </div>
       </article>
 
     </section>
 
     <section class="pop-up pop-up_active" aria-label="карточка редактирования профиля">
-      <form class="pop-up__eddit-form">
-        <input class="pop-up__close-button animation-hover" type="text" aria-label="кнопка закрыть попап">
+      <div class="pop-up__eddit-form">
+        <button class="pop-up__close-button animation-hover" type="text" aria-label="кнопка закрыть попап"></button>
         <h2 class="pop-up__title">Редактировать профиль</h2>
-        <input class="pop-up__input" type="text" value="Жак-Ив Кусто" name="pop-up__eddit-form">
-        <input class="pop-up__input" type="text" value="Исследователь океана" name="pop-up__eddit-form">
-        <button class="pop-up__button hover-batton" type="submit">Сохранить</button>
-      </form>
+        <form name="po-pup__form">
+          <input class="pop-up__input" type="text" value="Жак-Ив Кусто" name="pop-up__eddit-form">
+          <input class="pop-up__input" type="text" value="Исследователь океана" name="pop-up__eddit-form">
+          <button class="pop-up__button hover-batton" type="submit">Сохранить</button>
+        </form>
+      </div>
 
     </section>
 
