@@ -32,6 +32,7 @@
       <template id="plases-card">
         <article  class="plases-card" aria-label="места России">
           <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
+          <button class="plases-card__del animation-hover" type="button" aria-label="кнопка удалить"></button>
           <div class="plases-card__card-title">
             <h2 class="plases-card__title">Карачаевск</h2>
             <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
@@ -55,6 +56,16 @@
 
     </section>
 
+    <section class="popup-img pop-up_active" aria-label="карточка просмотра фотографии">
+  
+      <figure class="popup-img__figure">
+        <button class="popup-img__close-button animation-hover" type="button" aria-label="кнопка закрыть попап"></button>
+        <img class="popup-img__image" src="" alt="Обложка сайта">
+        <figcaption class="popup-img__caption"></figcaption>
+      </figure>
+
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -65,5 +76,7 @@
   <script src="./blocks/pop-up/popup.js"></script>
   <script src="./blocks/plases-card/__like/_active/likeActiv.js"></script>
   <script src="./blocks/pop-up/popupAddPlace.js"></script>
+  <script src="./blocks/plases-card/__del/delPlace.js"></script>
+  <script src="./blocks/popup-img/popupImg.js"></script>
 </body>
 </html>
