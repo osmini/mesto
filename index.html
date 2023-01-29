@@ -13,7 +13,7 @@
     <img class="header__logo" src="./images/logo.svg" alt="логотип Mesto">
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="profile">
       <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар автора">
@@ -39,55 +39,16 @@
         </article>
       </template>
 
-      <!--article class="plases-card" aria-label="места России">
-        <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
-        <div class="plases-card__card-title">
-          <h2 class="plases-card__title">Гора Эльбрус</h2>
-          <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
-        </div>
-      </!--article>
-
-      <article class="plases-card" aria-label="места России">
-        <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
-        <div class="plases-card__card-title">
-          <h2 class="plases-card__title">Домбай</h2>
-          <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
-        </div>
-      </article>
-
-      <article class="plases-card" aria-label="места России">
-        <img class="plases-card__img" src="./images/elbrus.png" alt="Гора Эльбрус">
-        <div class="plases-card__card-title">
-          <h2 class="plases-card__title">Гора Эльбрус</h2>
-          <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
-        </div>
-      </article>
-
-      <article class="plases-card" aria-label="места России">
-        <img class="plases-card__img" src="./images/dombay.png" alt="Домбай">
-        <div class="plases-card__card-title">
-          <h2 class="plases-card__title">Домбай</h2>
-          <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
-        </div>
-      </article>
-
-      <article class="plases-card" aria-label="места России">
-        <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаево-Черкессово">
-        <div class="plases-card__card-title">
-          <h2 class="plases-card__title">Карачаево-Черкессово</h2>
-          <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
-        </div>
-      </article -->
-
     </section>
 
     <section class="pop-up pop-up_active" aria-label="карточка редактирования профиля">
+
       <div class="pop-up__eddit-form">
         <button class="pop-up__close-button animation-hover" type="button" aria-label="кнопка закрыть попап"></button>
         <h2 class="pop-up__title">Редактировать профиль</h2>
         <form class="pop-up__form" name="form-eddit">
-          <input class="pop-up__input" type="text" value="Жак-Ив Кусто" name="name-input">
-          <input class="pop-up__input" type="text" value="Исследователь океана" name="job-input">
+          <input class="pop-up__input" id="namePlase" type="text" value="Жак-Ив Кусто" name="name-input" placeholder="">
+          <input class="pop-up__input" id="ssilkaPlase" type="text" value="Исследователь океана" name="job-input" placeholder="">
           <button class="pop-up__button hover-batton" type="submit">Сохранить</button>
         </form>
       </div>
@@ -102,5 +63,6 @@
 
   <script src="./blocks/plases-card/plases-card.js"></script>
   <script src="./blocks/pop-up/popup.js"></script>
+  <script src="./blocks/pop-up/popupAddPlace.js"></script>
 </body>
 </html>

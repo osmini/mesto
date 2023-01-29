@@ -1,8 +1,10 @@
+
 let popup = document.querySelector(".pop-up");
 let popupOpen = document.querySelector(".profile-info__button-edit");
 let popupCloses = document.querySelector(".pop-up__close-button");
 // Находим форму в DOM
 let formElement = document.querySelector(".pop-up__eddit-form");
+let popupMesto =  document.querySelector(".profile__button-add");
 // Находим поля формы в DOM
 let input = document.querySelectorAll(".pop-up__input");
 let nameInput = input[0];
@@ -38,9 +40,11 @@ function handleFormSubmit (evt) {
   }
 
 
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener("submit", handleFormSubmit);
 
 popupOpen.addEventListener("click", openPopup);
 popupCloses.addEventListener("click", closesPopup);
+
