@@ -4,7 +4,7 @@ let buttonClossePopapImg = document.querySelector(".popup-img__close-button");
 let imagePlases = document.querySelectorAll(".plases-card__img");
 
 function closesPopup() {
-  popapImg.classList.add("pop-up_active");
+  popapImg.classList.remove("pop-up_active");
 }
 
 // кажатие на картинку
@@ -18,7 +18,7 @@ imagePlases.forEach(function(amgActive) {
     let captionPopupImg = popapImg.querySelector(".popup-img__caption");
     captionPopupImg.textContent = item.target['alt'];
 
-    popapImg.classList.remove("pop-up_active");
+    popapImg.classList.add("pop-up_active");
 
   });
 });

@@ -7,7 +7,8 @@ function popapAddMesto(){
 
   // клонировать попап
   main.append(popapCopy); 
-  popapCopy.classList.remove("pop-up_active");
+
+  popapCopy.classList.add("pop-up_active");
 
   let popapClose = popapCopy.querySelector(".pop-up__close-button");
   let buttonAdd = popapCopy.querySelector(".pop-up__button");
@@ -21,7 +22,7 @@ function popapAddMesto(){
 
   // кнопка закрытия попап
   popapClose.addEventListener("click", function(){
-    popapCopy.classList.add("pop-up_active");
+    popapCopy.classList.remove("pop-up_active");
   });
 
   // кнопка добавить новое место
@@ -37,7 +38,7 @@ function popapAddMesto(){
     plasesСardElement.querySelector('.plases-card__img').alt = popapCopy.querySelector('#namePlase').value;
     plasesСardElement.querySelector('.plases-card__title').textContent = popapCopy.querySelector('#namePlase').value;
 
-    popapCopy.classList.add("pop-up_active");
+    popapCopy.classList.remove("pop-up_active");
   
     plases.prepend(plasesСardElement); 
 

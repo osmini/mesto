@@ -1,4 +1,4 @@
 .pop-up_active {
-  display: none;
-}
-
+    visibility: visible;
+    opacity: 1;
+  }

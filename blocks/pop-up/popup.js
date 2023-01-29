@@ -14,14 +14,14 @@ let infoTitle = document.querySelector(".profile-info__title");
 let infoSubtitle = document.querySelector(".profile-info__subtitle");
 
 function openPopup() {
-  popup.classList.remove("pop-up_active");
+  popup.classList.add("pop-up_active");
 
   nameInput.value = infoTitle.textContent;
   jobInput.value = infoSubtitle.textContent;
 }
 
 function closesPopup() {
-  popup.classList.add("pop-up_active");
+  popup.classList.remove("pop-up_active");
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -36,7 +36,7 @@ function handleFormSubmit (evt) {
     infoTitle.textContent = valNameInput;
     infoSubtitle.textContent = valJobInput;
 
-    popup.classList.add("pop-up_active");
+    popup.classList.remove("pop-up_active");
   }
 
 
