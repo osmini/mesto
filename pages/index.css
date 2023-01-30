@@ -40,6 +40,14 @@
   @import url(../blocks/pop-up/__input/pop-up__input.css);
   @import url(../blocks/pop-up/__button/pop-up__button.css);
 
+/*popup-edd*/
+@import url(../blocks/popup-edd/popup-edd.css);
+  @import url(../blocks/popup-edd/__eddit-form/popup-edd__eddit-form.css);
+  @import url(../blocks/popup-edd/__close-button/popup-edd__close-button.css);
+  @import url(../blocks/popup-edd/__title/popup-edd__title.css);
+  @import url(../blocks/popup-edd/__input/popup-edd__input.css);
+  @import url(../blocks/popup-edd/__button/popup-edd__button.css);
+
 /*popup-img*/
 @import url(../blocks/popup-img/popup-img.css);
   @import url(../blocks/popup-img/__figure/popup-img__figure.css);
