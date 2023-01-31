@@ -1,74 +1,29 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+// секция куда вставляем карточки
+const plases = document.querySelector('.plases');
+// шаблон карточки
+const cardTemplate = document.querySelector('#plases-card').content;
 
-let plasesСardTemplate = document.querySelector('#plases-card').content;
-let plases = document.querySelector('.plases');
+const popupProfile = document.querySelector('#popup_profile');
+const popupMesto = document.querySelector('#popup_mesto');
+const popupImg = document.querySelector('#popup_img');
 
-let popup = document.querySelector(".pop-up");
-let popupOpen = document.querySelector(".profile-info__button-edit");
-let popupCloses = document.querySelector(".pop-up__close-button");
-// Находим форму в DOM
-let formElement = document.querySelector(".pop-up__eddit-form");
-let popupMesto =  document.querySelector(".profile__button-add");
-// Находим поля формы в DOM
-let input = document.querySelectorAll(".pop-up__input");
-let nameInput = input[0];
-let jobInput = input[1];
-// поля информации из профиля
-let infoTitle = document.querySelector(".profile-info__title");
-let infoSubtitle = document.querySelector(".profile-info__subtitle");
+const buttonClosePopupProfile = document.querySelector('#popup_profile-close');
+const buttonClosePopupMesto = document.querySelector('#popup_mesto-close');
+const buttonClosePopupImg = document.querySelector('#popup_img-close');
 
-let popupEdd = document.querySelector(".popup-edd");
-let buttonAdd = document.querySelector(".popup-edd__button");
-let popupMestoCloses = document.querySelector(".popup-edd__close-button");
+// окрыть popup редактирования профиля
+// popup - попап который необходимо открыть
+function openPopup(popup) {
+  popup.classList.add("popup_active");
 
-// Добавление карточек мест на страницу по умолчанию
-function addCards(){
-  initialCards.forEach(function (item) {
-    let plasesСardElement = plasesСardTemplate.querySelector('.plases-card').cloneNode(true);
-
-    plasesСardElement.querySelector('.plases-card__img').src = item['link'];
-    plasesСardElement.querySelector('.plases-card__img').alt = item['name'];
-    plasesСardElement.querySelector('.plases-card__title').textContent = item['name'];
-
-    plases.append(plasesСardElement); 
-  });
+  //nameInput.value = infoTitle.textContent;
+  //jobInput.value = infoSubtitle.textContent;
 }
 
-// поставить и убрать лайк карточки
-function likes(){
-  let buttonLike = document.querySelectorAll('.plases-card__like');
-  buttonLike.forEach(function(button) {
-    button.addEventListener("click", function(like){
-      
-      like.target.classList.toggle("plases-card__like_active");
-
-    });
-  });
+// закрыть popup редактирования профиля
+// popup - попап который необходимо закрыть
+function closesPopup(popup) {
+  popup.classList.remove("popup_active");
 }
 
 // удаляет карточку места по нажатию на корзину
@@ -84,18 +39,71 @@ function dellCard(){
   });
 }
 
-// окрыть pop-up редактирования профиля
-function openPopup() {
-  popup.classList.add("pop-up_active");
+/* функция создания карточки на сайте 
+  item - элемент массива с заголовком и ссылкой на картинку
+*/
+function createCard(item) {
+  // клонирование карточки
+  const card = cardTemplate.querySelector('.plases-card').cloneNode(true);
+  // кнопка лайков
+  const buttonLike = card.querySelector('.plases-card__like');
+  // кнопка корзина 
+  const basket = card.querySelector('.plases-card__del');
+  // кнопка картинка
+  const buttonImg = card.querySelector('.plases-card__img');
 
-  nameInput.value = infoTitle.textContent;
-  jobInput.value = infoSubtitle.textContent;
+  // заполняем карточку данными
+  card.querySelector('.plases-card__img').src = item['link'];
+  card.querySelector('.plases-card__img').alt = item['name'];
+  card.querySelector('.plases-card__title').textContent = item['name'];
+
+  // обработчик лайков
+  buttonLike.addEventListener('click', function(){
+    buttonLike.classList.toggle("plases-card__like_active");
+  });
+
+  // обработчик корзины
+  basket.addEventListener("click", function(){
+    card.closest('.plases-card').delCard.remove();
+  });
+
+  // обработчик попап картинка
+  buttonImg.addEventListener("click", function(){ openPopup(popupImg); }); 
+
+  return card
 }
 
-// закрыть pop-up редактирования профиля
-function closesPopup() {
-  popup.classList.remove("pop-up_active");
-}
+
+// заполняем карточками сайт
+initialCards.forEach(function(item){
+  plases.append(createCard(item)); 
+})
+
+
+ // закрыть попап картинку
+buttonClosePopupImg.addEventListener("click", function(){ closesPopup(popupImg); }); 
+
+
+
+
+const popup = document.querySelector(".popup");
+const popupOpen = document.querySelector(".profile-info__button-edit");
+const popupCloses = document.querySelector(".popup__close-button");
+// Находим форму в DOM
+const formElement = document.querySelector(".popup__eddit-form");
+// Находим поля формы в DOM
+const input = document.querySelectorAll(".popup__input");
+const nameInput = input[0];
+const jobInput = input[1];
+// поля информации из профиля
+const infoTitle = document.querySelector(".profile-info__title");
+const infoSubtitle = document.querySelector(".profile-info__subtitle");
+
+const popupEdd = document.querySelector(".popup-edd");
+const buttonAdd = document.querySelector(".popup-edd__button");
+const popupMestoCloses = document.querySelector(".popup-edd__close-button");
+
+
 
 
 // изменить данные о профиле
@@ -109,16 +117,16 @@ function handleFormSubmit (evt) {
   infoTitle.textContent = valNameInput;
   infoSubtitle.textContent = valJobInput;
 
-  popup.classList.remove("pop-up_active");
+  popup.classList.remove("popup_active");
 }
 
 // добавить карточну нового места на сайт
 function popapAddMesto(){
-  popupEdd.classList.add("pop-up_active");
+  popupEdd.classList.add("popup_active");
 
   // кнопка закрытия попап
   popupMestoCloses.addEventListener("click", function(){
-    popupEdd.classList.remove("pop-up_active");
+    popupEdd.classList.remove("popup_active");
   });
 
   // кнопка добавить новое место
@@ -134,7 +142,7 @@ function popapAddMesto(){
     plasesСardElement.querySelector('.plases-card__img').alt = popupEdd.querySelector('#popup-edd_name').value;
     plasesСardElement.querySelector('.plases-card__title').textContent = popupEdd.querySelector('#popup-edd_name').value;
 
-    popupEdd.classList.remove("pop-up_active");
+    popupEdd.classList.remove("popup_active");
   
     plases.prepend(plasesСardElement); 
 
@@ -152,21 +160,20 @@ function openImgMesto(){
   let imagePlases = document.querySelectorAll(".plases-card__img");
 
   function closesPopupImg() {
-    popapImg.classList.remove("pop-up_active");
+    popapImg.classList.remove("popup_active");
   }
 
   imagePlases.forEach(function(amgActive) {
 
     amgActive.addEventListener("click", function(item){
       
-      console.log(111);
       let ssilkaPopupImg = popapImg.querySelector(".popup-img__image");
       ssilkaPopupImg.src = item.target['src'];
 
       let captionPopupImg = popapImg.querySelector(".popup-img__caption");
       captionPopupImg.textContent = item.target['alt'];
 
-      popapImg.classList.add("pop-up_active");
+      popapImg.classList.add("popup_active");
 
       buttonClossePopapImg.addEventListener("click", closesPopupImg);
 
@@ -174,8 +181,6 @@ function openImgMesto(){
   });
 }
 
-addCards();
-likes();
 dellCard();
 openImgMesto();
 

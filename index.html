@@ -42,40 +42,40 @@
 
     </section>
 
-    <section class="pop-up" aria-label="карточка редактирования профиля">
+    <section class="popup" id="popup_profile" aria-label="карточка редактирования профиля">
 
-      <div class="pop-up__eddit-form">
-        <button class="pop-up__close-button animation-hover" type="button" aria-label="кнопка закрыть попап"></button>
-        <h2 class="pop-up__title">Редактировать профиль</h2>
-        <form class="pop-up__form" name="form-eddit">
-          <input class="pop-up__input" id="namePlase" type="text" value="Жак-Ив Кусто" name="name-input" placeholder="">
-          <input class="pop-up__input" id="ssilkaPlase" type="text" value="Исследователь океана" name="job-input" placeholder="">
-          <button class="pop-up__button hover-batton" type="submit">Сохранить</button>
+      <div class="popup__eddit-form">
+        <button class="popup__close-button animation-hover" id="popup_profile-close" type="button" aria-label="кнопка закрыть попап"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="popup_profile">
+          <input class="popup__input" id="popup_name-profile" type="text" value="Жак-Ив Кусто" name="popup_name-profile" placeholder="">
+          <input class="popup__input" id="popup_work-profile" type="text" value="Исследователь океана" name="popup_work-profile" placeholder="">
+          <button class="popup__button hover-batton" type="submit">Сохранить</button>
         </form>
       </div>
 
     </section>
 
-    <section class="popup-edd" aria-label="карточка добавления места">
+    <section class="popup" id="popup_mesto" aria-label="карточка добавления места">
 
-      <div class="popup-edd__eddit-form">
-        <button class="popup-edd__close-button animation-hover" type="button" aria-label="кнопка закрыть попап"></button>
-        <h2 class="popup-edd__title">Новое место</h2>
-        <form class="popup-edd__form" name="popup-edd">
-          <input class="popup-edd__input" id="popup-edd_name" type="text" name="popup-edd_name" placeholder="Название">
-          <input class="popup-edd__input" id="popup-edd_ssilka" type="text" name="popup-edd_ssilka" placeholder="Ссылка на картинку">
-          <button class="popup-edd__button hover-batton" type="submit">Создать</button>
+      <div class="popup__eddit-form">
+        <button class="popup__close-button animation-hover" id="popup_mesto-close" type="button" aria-label="кнопка закрыть попап"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popup_place">
+          <input class="popup__input" id="popup__name-place" type="text" name="popup_name-place" placeholder="Название">
+          <input class="popup__input" id="popup_link-place" type="text" name="popup_link-place" placeholder="Ссылка на картинку">
+          <button class="popup__button hover-batton" type="submit">Создать</button>
         </form>
       </div>
 
     </section>
 
-    <section class="popup-img" aria-label="карточка просмотра фотографии">
+    <section class="popup" id="popup_img" aria-label="карточка просмотра фотографии">
   
-      <figure class="popup-img__figure">
-        <button class="popup-img__close-button animation-hover" type="button" aria-label="кнопка закрыть попап"></button>
-        <img class="popup-img__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg" alt="Обложка сайта">
-        <figcaption class="popup-img__caption"></figcaption>
+      <figure class="popup__figure">
+        <button class="popup__close-button animation-hover" id="popup_img-close" type="button" aria-label="кнопка закрыть попап"></button>
+        <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg" alt="Обложка сайта">
+        <figcaption class="popup__caption"></figcaption>
       </figure>
 
     </section>
@@ -86,7 +86,8 @@
     <p class="footer__copyraite">&#169; 2022 Mesto Russio</p>
   </footer>
 
-  <script src="./js/script.js"></script>
+  <script defer src="./js/date.js"></script>
+  <script defer src="./js/script.js"></script>
   
 </body>
 </html>

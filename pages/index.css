@@ -32,27 +32,14 @@
 @import url(../blocks/footer/footer.css);
   @import url(../blocks/footer/__copyraite/footer__copyraite.css);
 
-/*pop-up*/
-@import url(../blocks/pop-up/pop-up.css);
-  @import url(../blocks/pop-up/__eddit-form/pop-up__eddit-form.css);
-  @import url(../blocks/pop-up/__close-button/pop-up__close-button.css);
-  @import url(../blocks/pop-up/__title/pop-up__title.css);
-  @import url(../blocks/pop-up/__input/pop-up__input.css);
-  @import url(../blocks/pop-up/__button/pop-up__button.css);
-
-/*popup-edd*/
-@import url(../blocks/popup-edd/popup-edd.css);
-  @import url(../blocks/popup-edd/__eddit-form/popup-edd__eddit-form.css);
-  @import url(../blocks/popup-edd/__close-button/popup-edd__close-button.css);
-  @import url(../blocks/popup-edd/__title/popup-edd__title.css);
-  @import url(../blocks/popup-edd/__input/popup-edd__input.css);
-  @import url(../blocks/popup-edd/__button/popup-edd__button.css);
-
-/*popup-img*/
-@import url(../blocks/popup-img/popup-img.css);
-  @import url(../blocks/popup-img/__figure/popup-img__figure.css);
-  @import url(../blocks/popup-img/__close-button/popup-img__close-button.css);
-  @import url(../blocks/popup-img/__image/popup-img__image.css);
-  @import url(../blocks/popup-img/__caption/popup-img__caption.css);
-
-  @import url(../blocks/pop-up/_active/pop-up_active.css);
+/*popup*/
+@import url(../blocks/popup/popup.css);
+  @import url(../blocks/popup/__eddit-form/popup__eddit-form.css);
+  @import url(../blocks/popup/__close-button/popup__close-button.css);
+  @import url(../blocks/popup/__title/popup__title.css);
+  @import url(../blocks/popup/__input/popup__input.css);
+  @import url(../blocks/popup/__button/popup__button.css);
+  @import url(../blocks/popup/__figure/popup__figure.css);
+  @import url(../blocks/popup/__image/popup__image.css);
+  @import url(../blocks/popup/__caption/popup__caption.css);
+  @import url(../blocks/popup/_active/popup_active.css);

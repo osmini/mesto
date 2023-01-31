@@ -1,4 +1,4 @@
-.popup-edd__input {
+.popup__input {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -10,7 +10,7 @@
 }
 
 @media (max-width:768px) {
-  .popup-edd__input {
+  .popup__input {
     font-size: 14px;
     line-height: 17px;
     width: 238px;

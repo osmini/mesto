@@ -1,4 +1,4 @@
-.popup-img__image {
+.popup__image {
   max-width: 816px;
   max-height: 562px;
   object-fit: cover;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 886px) {
-  .popup-img__image {
+  .popup__image {
     max-width: 240px;
     max-height: 299px;
   }

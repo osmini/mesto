@@ -1,4 +1,4 @@
-.pop-up__button {
+.popup__button {
   width: 358px;
   height: 50px;
   background: #000;
@@ -15,7 +15,7 @@
 }
 
 @media (max-width:768px) {
-  .pop-up__button {
+  .popup__button {
     font-size: 14px;
     line-height: 17px;
     width: 238px;

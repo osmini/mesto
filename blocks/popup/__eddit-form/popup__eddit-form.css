@@ -1,4 +1,4 @@
-.pop-up__eddit-form {
+.popup__eddit-form {
   display: flex;
   flex-direction:column;
   align-items:center;
@@ -11,7 +11,7 @@
 }
 
 @media (max-width:768px) {
-  .pop-up__eddit-form {
+  .popup__eddit-form {
     width: 282px;
   }
 }

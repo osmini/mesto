@@ -1,4 +1,4 @@
-.popup-edd__close-button {
+.popup__close-button {
   position: relative;
   right: -240px;
   top: -40px;
@@ -13,7 +13,7 @@
 }
 
 @media (max-width:768px) {
-  .popup-edd__close-button {
+  .popup__close-button {
     background-image: url(../../../images/CloseIcon_20.svg);
     right: -132px;
     top: -36px;
