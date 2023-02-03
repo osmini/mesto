@@ -1,4 +1,3 @@
-
 const plases = document.querySelector('.plases');
 const cardTemplate = document.querySelector('#plases-card').content;
 
@@ -28,6 +27,8 @@ const buttonAddPlase = popupMesto.querySelector('.popup__button');
 const popupImgLink = popupImg.querySelector('.popup__image');
 const popupImgTitle = popupImg.querySelector('.popup__caption');
 
+const placeTitle = popupMesto.querySelector('#popup__name-place');
+const placeLink = popupMesto.querySelector('#popup__link-place');
 
 function openPopup(popup) {
   popup.classList.add("popup_active");
@@ -38,15 +39,12 @@ function closesPopup(popup) {
 }
 
 function chaingProfile() {
+
+  popupProfile.querySelector('#popup_name-profile').value = nameInput.value;
+  popupProfile.querySelector('#popup_work-profile').value = jobInput.value;
   
-  const valNameInput = nameInput.value;
-  const valJobInput = jobInput.value;
-
-  nameInput.value = infoTitle.textContent;
-  jobInput.value = infoSubtitle.textContent;
-
-  infoTitle.textContent = valNameInput;
-  infoSubtitle.textContent = valJobInput;
+  infoTitle.textContent = nameInput.value;
+  infoSubtitle.textContent = jobInput.value;
 }
 
 function createCard(title, link) {
@@ -69,18 +67,16 @@ function createCard(title, link) {
   });
 
   buttonImg.addEventListener('click', function(){ 
-    openPopup(popupImg); 
     popupImgLink.src = link;
     popupImgLink.alt = title;
     popupImgTitle.textContent = title;
+    openPopup(popupImg); 
   }); 
 
   return card
 }
 
 buttonOpenPopupProfile.addEventListener('click', function(){ openPopup(popupProfile); }); 
-
-buttonClosePopupProfile.addEventListener('click', function(){ closesPopup(popupProfile); }); 
 
 buttonClosePopupProfile.addEventListener('click', function(){ closesPopup(popupProfile); }); 
 
@@ -100,12 +96,15 @@ formPopupProfile.addEventListener('submit', function(evt){
 
 formPopupPlace.addEventListener('submit', function(evt){ 
   evt.preventDefault(); 
-  evt.target.reset();   
 
-  const placeTitle = popupMesto.querySelector('#popup__name-place').value;
-  const placeLink = popupMesto.querySelector('#popup_link-place').value;
-  plases.prepend(createCard(placeTitle, placeLink)); 
+  if (placeTitle.value && placeLink.value){
+  plases.prepend(createCard(placeTitle.value, placeLink.value)); 
   closesPopup(popupMesto);
+  } else {
+    closesPopup(popupMesto);
+  }
+
+  evt.target.reset();   
 });
 
 initialCards.forEach(function(item){
