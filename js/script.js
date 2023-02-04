@@ -39,9 +39,6 @@ function closesPopup(popup) {
 }
 
 function chaingProfile() {
-
-  popupProfile.querySelector('#popup_name-profile').value = nameInput.value;
-  popupProfile.querySelector('#popup_work-profile').value = jobInput.value;
   
   infoTitle.textContent = nameInput.value;
   infoSubtitle.textContent = jobInput.value;
