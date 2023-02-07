@@ -23,3 +23,10 @@
     margin-bottom: 25px;
   }
 }
+
+.popup__button:disabled {
+  opacity: 0.2;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000000;
+}
