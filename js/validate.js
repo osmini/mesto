@@ -1,12 +1,21 @@
+const validationClases = {
+  formSelector: 'popup__form',
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__button',
+  hoverButton: 'hover-batton',
+  inputErrorBorder: 'popup__input_error-border',
+  errorClass: 'popup__input-error_error_active'
+};
+
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (formElement, inputElement, errorMessage) => {
 
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  inputElement.classList.add('popup__input_error-border');
+  inputElement.classList.add(validationClases.inputErrorBorder);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_error_active');
+  errorElement.classList.add(validationClases.errorClass);
 };
 
 // Функция, которая удаляет класс с ошибкой
@@ -15,8 +24,8 @@ const hideInputError = (formElement, inputElement) => {
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  inputElement.classList.remove('popup__input_error-border');
-  errorElement.classList.remove('popup__input-error_error_active');
+  inputElement.classList.remove(validationClases.inputErrorBorder);
+  errorElement.classList.remove(validationClases.errorClass);
   errorElement.textContent = '';
 };
 
@@ -35,23 +44,27 @@ const isValid = (formElement, inputElement) => {
 // слушатель событий добавится всем полям ввода внутри формы
 const setEventListeners = (formElement) => {
 
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__button');
+  const inputList = Array.from(formElement.querySelectorAll(`.${validationClases.inputSelector}`));
+  const buttonElement = formElement.querySelector(`.${validationClases.submitButtonSelector}`);
 
+  
+  // деактивируем кнопку при 1й загрузке сайта
   toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
+
     });
   });
+  
 };
 
   // Найдём все формы с указанным классом в DOM,
 const enableValidation = () => {
 
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  const formList = Array.from(document.querySelectorAll(`.${validationClases.formSelector}`));
 
   formList.forEach((formElement) => {
     setEventListeners(formElement);
@@ -79,11 +92,11 @@ const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
     buttonElement.disabled = true;
-    buttonElement.classList.remove('hover-batton');
+    buttonElement.classList.remove(validationClases.hoverButton);
   } else {
     // иначе сделай кнопку активной
     buttonElement.disabled = false;
-    buttonElement.classList.add('hover-batton');
+    buttonElement.classList.add(validationClases.hoverButton);
   }
 };
 
