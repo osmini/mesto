@@ -1,31 +1,22 @@
-const validationClases = {
-  formSelector: 'popup__form',
-  inputSelector: 'popup__input',
-  submitButtonSelector: 'popup__button',
-  hoverButton: 'hover-batton',
-  inputErrorBorder: 'popup__input_error-border',
-  errorClass: 'popup__input-error_error_active'
-};
-
 // Функция, которая добавляет класс с ошибкой
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, inputErrorBorder, errorClass) => {
 
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  inputElement.classList.add(validationClases.inputErrorBorder);
+  inputElement.classList.add(inputErrorBorder);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(validationClases.errorClass);
+  errorElement.classList.add(errorClass);
 };
 
 // Функция, которая удаляет класс с ошибкой
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, inputErrorBorder, errorClass) => {
 
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  inputElement.classList.remove(validationClases.inputErrorBorder);
-  errorElement.classList.remove(validationClases.errorClass);
+  inputElement.classList.remove(inputErrorBorder);
+  errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
 };
 
@@ -42,29 +33,36 @@ const isValid = (formElement, inputElement) => {
 }; 
 
 // слушатель событий добавится всем полям ввода внутри формы
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, inputSelector, submitButtonSelector) => {
 
-  const inputList = Array.from(formElement.querySelectorAll(`.${validationClases.inputSelector}`));
-  const buttonElement = formElement.querySelector(`.${validationClases.submitButtonSelector}`);
+  const inputList = Array.from(formElement.querySelectorAll(`.${inputSelector}`));
+  
+  const buttonElement = formElement.querySelector(`.${submitButtonSelector}`);
 
   
   // деактивируем кнопку при 1й загрузке сайта
   toggleButtonState(inputList, buttonElement);
 
+  formElement.addEventListener('reset', () => {
+    // `setTimeout` нужен для того, чтобы дождаться очищения формы (вызов уйдет в конце стэка) и только потом вызвать `toggleButtonState`
+    setTimeout(() => {
+    toggleButtonState(inputList, buttonElement);
+    }, 0); // достаточно указать 0 миллисекунд, чтобы после `reset` уже сработало действие
+  });
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
-
     });
   });
-  
 };
 
   // Найдём все формы с указанным классом в DOM,
-const enableValidation = () => {
+const enableValidation = (formSelector) => {
 
-  const formList = Array.from(document.querySelectorAll(`.${validationClases.formSelector}`));
+  console.log(formSelector);
+  const formList = Array.from(document.querySelectorAll(`.${formSelector}`));
 
   formList.forEach((formElement) => {
     setEventListeners(formElement);
@@ -86,19 +84,26 @@ const hasInvalidInput = (inputList) => {
 
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, hoverButton) => {
 
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
     buttonElement.disabled = true;
-    buttonElement.classList.remove(validationClases.hoverButton);
+    buttonElement.classList.remove(hoverButton);
   } else {
     // иначе сделай кнопку активной
     buttonElement.disabled = false;
-    buttonElement.classList.add(validationClases.hoverButton);
+    buttonElement.classList.add(hoverButton);
   }
 };
 
 // Вызовем функцию
-enableValidation();
+enableValidation({
+  formSelector: 'popup__form',
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__button',
+  hoverButton: 'hover-batton',
+  inputErrorBorder: 'popup__input_error-border',
+  errorClass: 'popup__input-error_error_active'
+});
