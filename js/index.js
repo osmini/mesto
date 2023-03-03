@@ -12,6 +12,10 @@ import {initialCards, setings} from './date.js';
 
   const popupProfile = document.querySelector('#popup_profile');
   const popupMesto = document.querySelector('#popup_mesto');
+  const popupMestoImg = document.querySelector('#popup_img');
+
+  const popupImg = popupMestoImg.querySelector('.popup__image');
+  const popupCaption = popupMestoImg.querySelector('.popup__caption')
 
   const formPopupProfile = document.forms['popup_profile'];
   const formPopupPlace = document.forms['popup_place'];
@@ -24,6 +28,11 @@ import {initialCards, setings} from './date.js';
 
   const placeTitle = popupMesto.querySelector('#popup__name-place');
   const placeLink = popupMesto.querySelector('#popup__link-place');
+
+  const validProfile = new FormValidator(setings, '#popup_form-profile');
+  validProfile.enableValidation();
+  const validMesto = new FormValidator(setings, '#popup_form-place');
+  validMesto.enableValidation();
 
   function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -39,37 +48,49 @@ import {initialCards, setings} from './date.js';
   }
 
   function openPopup(popup) {
-
     popup.classList.add('popup_active');
     document.addEventListener('keydown', closeByEscape); 
     document.addEventListener('mousedown', closeByСlick); 
   }
 
   function closesPopup(popup) {
-
     popup.classList.remove('popup_active');
     document.removeEventListener('keydown', closeByEscape);
     document.removeEventListener('mousedown', closeByСlick); 
   }
 
+  // открыть и наполнить попап просмотра картинки места
+  function handleCardClick(name, link) {
+    popupImg.src = link;
+    popupImg.alt = name;
+    popupCaption.textContent = name;
+    openPopup(popupMestoImg); 
+  }
+  
+  // изменить профиль
   function changeProfile() {
-
     infoTitle.textContent = nameInput.value;
     infoSubtitle.textContent = jobInput.value;
   }
 
+  // создать карточку
+  function createCard(item) {
+    const card = new Card(item, '#plases-card',  handleCardClick);
+    // Создаём карточку и возвращаем наружу
+    const cardElement = card.generateCard();
+    return cardElement
+  }
+ 
+
   // открыть попап для редактирования профиля
   buttonOpenPopupProfile.addEventListener('click', function(){ 
     openPopup(popupProfile); 
-    const validProfile = new FormValidator(setings, '#popup_form-profile');
-    validProfile.enableValidation();
 
   }); 
 
   // открыть попап для добавления карточки места
   buttonOpenPopupMesto.addEventListener('click', function(){ 
-    const validMesto = new FormValidator(setings, '#popup_form-place');
-    validMesto.enableValidation();
+    validMesto.resetValidation();
     openPopup(popupMesto); 
   }); 
 
@@ -98,13 +119,10 @@ import {initialCards, setings} from './date.js';
         }
       ];
 
-      // Создадим экземпляр карточки
-      const card = new Card(newCard[0], '#plases-card');
-      // Создаём карточку и возвращаем наружу
-      const cardElement = card.generateCard();
+      const cardElement = createCard(newCard[0]);
+      // Добавляем в DOM 
+      plases.prepend(cardElement); 
 
-      // Добавляем в DOM
-      plases.prepend(cardElement);
       closesPopup(popupMesto);
     }
     evt.target.reset();
@@ -113,13 +131,12 @@ import {initialCards, setings} from './date.js';
 
   // циклом добавляем карточки на страницу
   initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
-    const card = new Card(item, '#plases-card');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
 
+    const cardElement = createCard(item);
     // Добавляем в DOM
     plases.append(cardElement);
+
   }); 
+  
 })(); 
 

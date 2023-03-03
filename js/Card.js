@@ -1,9 +1,13 @@
 export class Card {
 
-  constructor(initialCards, templateSelector) {
+  constructor(initialCards, templateSelector, handleCardClick) {
     this._name = initialCards.name;
     this._link = initialCards.link;
+
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
+    this._lookImgCard = document.querySelector('#popup_img')
+
   }
 
   // получить шаблон карточки
@@ -20,42 +24,40 @@ export class Card {
 
   // сделать кнопку лайка активной
   _likeActive(){
-    this._element.querySelector('.plases-card__like').classList.toggle("plases-card__like_active");
+    this._likeButton.classList.toggle("plases-card__like_active");
   }
 
   // слушатель кнопки лайка
   _likeListeners() {
-    this._element.querySelector('.plases-card__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._likeActive();
     });  
   }
 
   // удалить карточку
   _dellCard(){
-    this._element.closest('.plases-card').remove();
+    this._element.remove();
   }
 
   // слушатель кнопки удалить карточку
   _dellCardListeners() {
-    this._element.querySelector('.plases-card__del').addEventListener('click', () => {
+    this._dellCardButton.addEventListener('click', () => {
       this._dellCard();
     });  
   }
 
   // наполнить попап место
-  _сardPopap(){
-    const popupImg = document.querySelector('.popup__image');
-    popupImg.src = this._link;
-    popupImg.alt = this._name;
-    document.querySelector('.popup__caption').textContent = this._name;
-    document.querySelector('#popup_img').classList.add('popup_active');
+  _setEventListeners (){
+    this._plasesCardImg.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
   }
 
-  // слушатель открыть просмотр карточки места в попапе
-  _сardPopapListeners() {
-    this._element.querySelector('.plases-card__img').addEventListener('click', () => {
-      this._сardPopap();
-    });  
+  //добавить слушатели обработчики
+  _addListenersCard(){
+    this._likeListeners(); // добавим обработчики кнопки лайк
+    this._dellCardListeners(); // добавим обработчики кнопки удалить карточку
+    this._setEventListeners(); // добавим обработчики попап картинки
   }
 
   // заполнить карточку данными
@@ -63,9 +65,11 @@ export class Card {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
-    this._likeListeners(); // добавим обработчики кнопки лайк
-    this._dellCardListeners(); // добавим обработчики кнопки удалить карточку
-    this._сardPopapListeners(); // добавим обработчики попап картинки
+    this._likeButton = this._element.querySelector('.plases-card__like');
+    this._dellCardButton = this._element.querySelector('.plases-card__del')
+    this._plasesCardImg = this._element.querySelector('.plases-card__img');
+
+    this._addListenersCard();
 
     // Добавим данные
     const buttonImg = this._element.querySelector('.plases-card__img');
