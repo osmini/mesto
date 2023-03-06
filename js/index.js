@@ -48,11 +48,6 @@ import {initialCards, setings} from './date.js';
   }
 
   function openPopup(popup) {
-    if (popup == '#popup_profile'){
-      nameInput.value =  infoTitle.textContent;
-      jobInput.value = infoSubtitle.textContent
-    }
-    
     popup.classList.add('popup_active');
     document.addEventListener('keydown', closeByEscape); 
     document.addEventListener('mousedown', closeByСlick); 
@@ -80,6 +75,8 @@ import {initialCards, setings} from './date.js';
 
   // открыть попап для редактирования профиля
   buttonOpenPopupProfile.addEventListener('click', function(){ 
+    nameInput.value =  infoTitle.textContent;
+    jobInput.value = infoSubtitle.textContent
     openPopup(popupProfile); 
 
   }); 
