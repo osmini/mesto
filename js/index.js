@@ -48,6 +48,11 @@ import {initialCards, setings} from './date.js';
   }
 
   function openPopup(popup) {
+    if (popup == '#popup_profile'){
+      nameInput.value =  infoTitle.textContent;
+      jobInput.value = infoSubtitle.textContent
+    }
+    
     popup.classList.add('popup_active');
     document.addEventListener('keydown', closeByEscape); 
     document.addEventListener('mousedown', closeByСlick); 
@@ -73,6 +78,20 @@ import {initialCards, setings} from './date.js';
     infoSubtitle.textContent = jobInput.value;
   }
 
+  // открыть попап для редактирования профиля
+  buttonOpenPopupProfile.addEventListener('click', function(){ 
+    openPopup(popupProfile); 
+
+  }); 
+
+  // изменить данные о профиле при отправки формы
+  formPopupProfile.addEventListener('submit', function(evt){ 
+    evt.preventDefault(); 
+    changeProfile();
+    closesPopup(popupProfile); 
+  });
+
+
   // создать карточку
   function createCard(item) {
     const card = new Card(item, '#plases-card',  handleCardClick);
@@ -80,18 +99,6 @@ import {initialCards, setings} from './date.js';
     const cardElement = card.generateCard();
     return cardElement
   }
- 
-
-  // !!! ВНИМАНИЕ !!!
-  // я не понимаю ваше замечание, у меня и так информация в попап профиля берется с сайта и 
-  // в попапе можно сразу изменить информацию о профиле которая берется с сайта. Распишите пожалуйста подробнее!!!
-
-
-  // открыть попап для редактирования профиля
-  buttonOpenPopupProfile.addEventListener('click', function(){ 
-    openPopup(popupProfile); 
-
-  }); 
 
   // открыть попап для добавления карточки места
   buttonOpenPopupMesto.addEventListener('click', function(){ 
@@ -104,12 +111,6 @@ import {initialCards, setings} from './date.js';
     const popup = button.closest('.popup');
     // устанавливаем обработчик закрытия на крестик
     button.addEventListener('click', () => closesPopup(popup));
-  });
-
-  formPopupProfile.addEventListener('submit', function(evt){ 
-    evt.preventDefault(); 
-    changeProfile();
-    closesPopup(popupProfile); 
   });
 
   formPopupPlace.addEventListener('submit', function(evt){ 
