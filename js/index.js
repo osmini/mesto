@@ -59,7 +59,7 @@ import {initialCards, setings} from './date.js';
     document.removeEventListener('mousedown', closeByСlick); 
   }
 
-  // открыть и наполнить попап просмотра картинки места
+  // открыть и наполнить попап просмотра картинки места 111
   function handleCardClick(name, link) {
     popupImg.src = link;
     popupImg.alt = name;
