@@ -1,6 +1,6 @@
 export class Card {
 
-  constructor(initialCards, templateSelector, handleCardClick) {
+  constructor(initialCards, templateSelector, {handleCardClick}) {
     this._name = initialCards.name;
     this._link = initialCards.link;
 
@@ -49,7 +49,7 @@ export class Card {
   // наполнить попап место
   _setEventListeners (){
     this._plasesCardImg.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
+      this._handleCardClick(this._name, this._link);
     });
   }
 
