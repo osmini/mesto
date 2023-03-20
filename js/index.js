@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
 import {Section} from './Section.js';
-import {Popup, PopupWithImage} from './Popup.js';
+import {Popup, PopupWithImage, PopupWithForm} from './Popup.js';
+import {UserInfo} from './UserInfo.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards, setings} from './date.js';
 
@@ -10,20 +11,19 @@ const plases = document.querySelector('.plases');
 const buttonOpenPopupProfile = document.querySelector('.profile-info__button-edit');
 const buttonOpenPopupMesto = document.querySelector('.profile__button-add');
 
-//const popupImg = document.querySelector('.popup__image');
-//const popupCaption = document.querySelector('.popup__caption')
-
 const formPopupProfile = document.forms['popup_profile'];
-const formPopupPlace = document.forms['popup_place'];
+//const formPopupPlace = document.forms['popup_place'];
 
 const nameInput = document.querySelector('#popup_name-profile');
 const jobInput = document.querySelector('#popup_work-profile');
 
-const infoTitle = document.querySelector('.profile-info__title');
-const infoSubtitle = document.querySelector('.profile-info__subtitle');
+const info = {
+  infoTitle: document.querySelector('.profile-info__title'),
+  infoSubtitle: document.querySelector('.profile-info__subtitle')
+};
 
-const placeTitle = document.querySelector('#popup__name-place');
-const placeLink = document.querySelector('#popup__link-place');
+//const placeTitle = document.querySelector('#popup__name-place');
+//const placeLink = document.querySelector('#popup__link-place');
 
 // экземпляры валидации форм
 const validProfile = new FormValidator(setings, '#popup_form-profile');
@@ -37,25 +37,27 @@ popupProfile.setEventListeners();
 const popupMesto = new Popup('#popup_mesto');
 popupMesto.setEventListeners();
 
-// изменить профиль
-function changeProfile() {
-  infoTitle.textContent = nameInput.value;
-  infoSubtitle.textContent = jobInput.value;
-}
+// экземпляр изменения данных о пользователе 
+const infoUser = new UserInfo(info);
+
 
 // открыть попап для редактирования профиля
-buttonOpenPopupProfile.addEventListener('click', function(){ 
-  nameInput.value =  infoTitle.textContent;
-  jobInput.value = infoSubtitle.textContent 
+buttonOpenPopupProfile.addEventListener('click', function(){
+
+  const textUser = infoUser.getUserInfo();
+  nameInput.value = textUser.dateTitle;
+  jobInput.value = textUser.dateSubtitle 
   popupProfile.open();
 }); 
 
 // изменить данные о профиле при отправки формы
 formPopupProfile.addEventListener('submit', function(evt){ 
+
   evt.preventDefault(); 
-  changeProfile();
+  infoUser.setUserInfo();
   popupProfile.close();
 });
+
 
 // создать карточку
 function createCard(item) {
@@ -79,27 +81,30 @@ buttonOpenPopupMesto.addEventListener('click', function(){
   popupMesto.open();
 }); 
 
-formPopupPlace.addEventListener('submit', function(evt){ 
-  evt.preventDefault(); 
+const cardPlase = new PopupWithForm('#popup_mesto', {
+  addPlase: (evt, placeTitle, placeLink) => {  
 
-  if (placeTitle.value && placeLink.value){
+    //console.log(placeTitle);
+    evt.preventDefault(); 
+    if (placeTitle.value && placeLink.value){
 
-    const newCard = [ 
-      {
-        name: placeTitle.value,
-        link: placeLink.value
-      }
-    ];
-
-    const cardElement = createCard(newCard[0]);
-    // Добавляем в DOM 
-    plases.prepend(cardElement); 
-
-    popupMesto.close();
-  }
-  evt.target.reset();
+      const newCard = [ 
+        {
+          name: placeTitle.value,
+          link: placeLink.value
+        }
+      ];
   
+      const cardElement = createCard(newCard[0]);
+      // Добавляем в DOM 
+      plases.prepend(cardElement); 
+  
+      cardPlase.close(evt);
+    }
+  }
 });
+
+cardPlase.setEventListeners(); 
 
 // отрисовка карточек через взаимодействие классов
 const addCard = new Section({
