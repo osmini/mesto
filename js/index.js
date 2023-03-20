@@ -12,7 +12,6 @@ const buttonOpenPopupProfile = document.querySelector('.profile-info__button-edi
 const buttonOpenPopupMesto = document.querySelector('.profile__button-add');
 
 const formPopupProfile = document.forms['popup_profile'];
-//const formPopupPlace = document.forms['popup_place'];
 
 const nameInput = document.querySelector('#popup_name-profile');
 const jobInput = document.querySelector('#popup_work-profile');
@@ -21,9 +20,6 @@ const info = {
   infoTitle: document.querySelector('.profile-info__title'),
   infoSubtitle: document.querySelector('.profile-info__subtitle')
 };
-
-//const placeTitle = document.querySelector('#popup__name-place');
-//const placeLink = document.querySelector('#popup__link-place');
 
 // экземпляры валидации форм
 const validProfile = new FormValidator(setings, '#popup_form-profile');
@@ -39,7 +35,6 @@ popupMesto.setEventListeners();
 
 // экземпляр изменения данных о пользователе 
 const infoUser = new UserInfo(info);
-
 
 // открыть попап для редактирования профиля
 buttonOpenPopupProfile.addEventListener('click', function(){
@@ -57,7 +52,6 @@ formPopupProfile.addEventListener('submit', function(evt){
   infoUser.setUserInfo();
   popupProfile.close();
 });
-
 
 // создать карточку
 function createCard(item) {
