@@ -4,6 +4,7 @@ import {Popup, PopupWithImage, PopupWithForm} from './Popup.js';
 import {UserInfo} from './UserInfo.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards, setings} from './date.js';
+import './../pages/index.css';
 
 
 const plases = document.querySelector('.plases');
