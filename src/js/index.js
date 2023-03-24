@@ -1,10 +1,13 @@
 import {Card} from './Card.js';
 import {Section} from './Section.js';
-import {Popup, PopupWithImage, PopupWithForm} from './Popup.js';
+import {Popup} from './Popup.js';
+import {PopupWithForm} from './PopupWithForm.js';
+import {PopupWithImage} from './PopupWithImage.js';
 import {UserInfo} from './UserInfo.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards, setings} from './date.js';
 import './../pages/index.css';
+
 
 
 const plases = document.querySelector('.plases');
@@ -79,7 +82,6 @@ buttonOpenPopupMesto.addEventListener('click', function(){
 const cardPlase = new PopupWithForm('#popup_mesto', {
   addPlase: (evt, placeTitle, placeLink) => {  
 
-    //console.log(placeTitle);
     evt.preventDefault(); 
     if (placeTitle.value && placeLink.value){
 
@@ -93,7 +95,6 @@ const cardPlase = new PopupWithForm('#popup_mesto', {
       const cardElement = createCard(newCard[0]);
       // Добавляем в DOM 
       plases.prepend(cardElement); 
-  
       cardPlase.close(evt);
     }
   }

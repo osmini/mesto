@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // module.exports — это синтаксис экспорта в Node.js
 module.exports = {
-  entry: "./js/index.js",
+  entry: "./src/js/index.js",
   mode: "production",
   devtool: "source-map",
   output: {
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html"
+      template: "./src/index.html"
     }),
     new MiniCssExtractPlugin()
   ]
