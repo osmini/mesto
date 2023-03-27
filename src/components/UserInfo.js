@@ -1,5 +1,5 @@
 
-// класс который отвечает за отрисовку элементов на странице
+// класс отвечает только за блок профиля
 export class UserInfo {
 
   constructor(info) {
@@ -19,9 +19,9 @@ export class UserInfo {
   }
 
   //  принимает новые данные пользователя и добавляет их на страницу.
-  setUserInfo(){
-    this._infoTitle.textContent = document.querySelector('#popup_name-profile').value;
-    this._infoSubtitle.textContent = document.querySelector('#popup_work-profile').value;
+  setUserInfo(name, work){
+    this._infoTitle.textContent = name;
+    this._infoSubtitle.textContent = work;
   }
   
 }

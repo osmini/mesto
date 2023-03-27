@@ -5,7 +5,7 @@ export class Section {
         this._initialArray = items;
 				this._render = render; 
 
-        this._container = selector;
+        this._container = document.querySelector(`${selector}`);
     }
 
 		// вставляем элемент на страницу
@@ -20,6 +20,5 @@ export class Section {
 				this._render(item); // вызываем renderer, передав item
 			}); 
     }
-
 }
 

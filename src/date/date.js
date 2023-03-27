@@ -33,3 +33,19 @@ export const setings = {
   inputErrorBorder: 'popup__input_error-border',
   errorClass: 'popup__input-error_error_active'
 };
+
+export const plases = document.querySelector('.plases');
+
+export const buttonOpenPopupProfile = document.querySelector('.profile-info__button-edit');
+export const buttonOpenPopupMesto = document.querySelector('.profile__button-add');
+
+export const formPopupProfile = document.forms['popup_profile'];
+export const formPopupMesto = document.forms['popup_place'];
+
+export const nameInput = document.querySelector('#popup_name-profile');
+export const jobInput = document.querySelector('#popup_work-profile');
+
+export const info = {
+  infoTitle: document.querySelector('.profile-info__title'),
+  infoSubtitle: document.querySelector('.profile-info__subtitle')
+};

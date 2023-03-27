@@ -6,7 +6,6 @@ export class Card {
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._lookImgCard = document.querySelector('#popup_img')
 
   }
 
@@ -47,7 +46,7 @@ export class Card {
   }
 
   // наполнить попап место
-  _setEventListeners (){
+  _setEventListener (){
     this._plasesCardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
@@ -57,7 +56,7 @@ export class Card {
   _addListenersCard(){
     this._likeListeners(); // добавим обработчики кнопки лайк
     this._dellCardListeners(); // добавим обработчики кнопки удалить карточку
-    this._setEventListeners(); // добавим обработчики попап картинки
+    this._setEventListener(); // добавим обработчики попап картинки
   }
 
   // заполнить карточку данными
