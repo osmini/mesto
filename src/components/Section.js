@@ -8,9 +8,14 @@ export class Section {
         this._container = document.querySelector(`${selector}`);
     }
 
-		// вставляем элемент на страницу
+		// вставляем элемент в конец на страницу
     addItem(element){
-        this._container.append(element);
+      this._container.append(element);
+    }
+
+    // вставляем элемент в начало на страницу
+    prependItem(element){
+      this._container.prepend(element);
     }
 
 		// создаем карточку и вставляем на страницу
