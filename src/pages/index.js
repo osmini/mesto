@@ -51,20 +51,8 @@ const popupMesto = new PopupWithForm('#popup_mesto', {
       }
     ];
 
-    // отрисовка карточек через взаимодействие классов
-    const newCard = new Section({
-      items: newCardDate,
-      render: (messageItem) => {
-          const cardElement = createCard(messageItem);
-          // Добавляем в DOM
-          newCard.prependItem(cardElement);
-        }
-      },
-      '.plases'
-    ); 
-
-    newCard.renderItems(); 
-
+    const cardElement = createCard(newCardDate[0]);
+    cards.prependItem(cardElement);
     popupMesto.close();
 
     }
@@ -107,15 +95,15 @@ function createCard(item) {
 }
 
 // отрисовка карточек через взаимодействие классов
-const card = new Section({
+const cards = new Section({
   items: initialCards,
   render: (messageItem) => {
       const cardElement = createCard(messageItem);
       // Добавляем в DOM
-      card.addItem(cardElement);
+      cards.addItem(cardElement);
     }
   },
   '.plases'
 ); 
 
-card.renderItems(); 
+cards.renderItems(); 

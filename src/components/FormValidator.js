@@ -43,6 +43,9 @@ export class FormValidator {
   resetValidation() {
     this._toggleButtonState(); 
 
+    this._buttonElement.disabled = true;
+    this._buttonElement.classList.remove(this._hoverButton);
+
     this._inputList.forEach((inputElement) => {
       inputElement.value = '';
       this._hideInputError(inputElement);
@@ -74,8 +77,8 @@ export class FormValidator {
   // проверка можно ли активировать кнопку или нет
   _hasInvalidInput() {
 
-    // проходим по этому массиву методом some
-    return this._inputList.some((inputElement) => {
+      // проходим по этому массиву методом some
+      return this._inputList.some((inputElement) => {
 
       // Если поле не валидно, колбэк вернёт true
       // Обход массива прекратится и вся функция
