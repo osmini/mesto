@@ -4,7 +4,7 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {initialCards, setings, plases, buttonOpenPopupProfile, buttonOpenPopupMesto, nameInput, jobInput, info} from '../date/date.js';
+import {initialCards, setings, buttonOpenPopupProfile, buttonOpenPopupMesto, nameInput, jobInput, api} from '../date/date.js';
 import './../pages/index.css';
 
 // экземпляры валидации форм
@@ -14,7 +14,8 @@ const validMesto = new FormValidator(setings, '#popup_form-place');
 validMesto.enableValidation();
 
 // экземпляр изменения данных о пользователе 
-const infoUser = new UserInfo(info);
+const infoUser = new UserInfo(api);
+infoUser.getInfoUserForServer();
 
 // попап изменения информации о пользователе
 const popupProfile = new PopupWithForm('#popup_profile',  {
@@ -107,3 +108,27 @@ const cards = new Section({
 ); 
 
 cards.renderItems(); 
+
+
+// API запрос к карточкам 
+fetch(`https://mesto.nomoreparties.co/v1/${api.identifikator}/cards`, {
+  headers: {
+    authorization: api.token
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
+
+
+  // API запрос о пользователе 
+/*fetch(`https://mesto.nomoreparties.co/v1/${api.identifikator}/users/me `, {
+  headers: {
+    authorization: api.token
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); */
