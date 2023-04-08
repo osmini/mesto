@@ -7,7 +7,11 @@ import {PopupAvatar} from '../components/PopupAvatar.js';
 import {Api} from '../components/Api.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js';
+<<<<<<< HEAD
 import {setings, apiConfig, buttonOpenPopupProfile, buttonOpenPopupMesto, nameInput, jobInput, info} from '../date/date.js';
+=======
+import {initialCards, setings, buttonOpenPopupProfile, buttonOpenPopupMesto, nameInput, jobInput, api} from '../date/date.js';
+>>>>>>> 70395234ea9fc68dc297996de76900764327175f
 import './../pages/index.css';
 
 // экземпляры валидации форм
@@ -25,7 +29,8 @@ const apiYandex =  new Api(apiConfig);
 apiYandex.getInfoUserForServer();
 
 // экземпляр изменения данных о пользователе 
-const infoUser = new UserInfo(info);
+const infoUser = new UserInfo(api);
+infoUser.getInfoUserForServer();
 
 // экземпляр изменения аватара
 const popupAvatar = new PopupAvatar('#popup_avatar', {
@@ -165,3 +170,31 @@ apiYandex.getCardsForServer()
     console.log(err);
   });
 
+<<<<<<< HEAD
+=======
+cards.renderItems(); 
+
+
+// API запрос к карточкам 
+fetch(`https://mesto.nomoreparties.co/v1/${api.identifikator}/cards`, {
+  headers: {
+    authorization: api.token
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
+
+
+  // API запрос о пользователе 
+/*fetch(`https://mesto.nomoreparties.co/v1/${api.identifikator}/users/me `, {
+  headers: {
+    authorization: api.token
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); */
+>>>>>>> 70395234ea9fc68dc297996de76900764327175f
