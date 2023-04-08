@@ -8,6 +8,7 @@ export class PopupAvatar extends Popup{
     this._edditButtonAvatar = document.querySelector('.profile__avatar-button');
     this._form = this._popup.querySelector('.popup__form');
     this._input = this._form.querySelector('.popup__input');
+    this._buttonForm = this._form.querySelector('.popup__button');
     this._appAvatar = appAvatar;
   }
 
@@ -21,6 +22,7 @@ export class PopupAvatar extends Popup{
         super.close();
       });
       super.setEventListeners();
+      this._dellInpytAvatar()
     })
   }
 
@@ -28,5 +30,11 @@ export class PopupAvatar extends Popup{
   _getAvatar(){
       return this._input.value;
     }
+
+  // очистить форму
+  _dellInpytAvatar(){
+    this._input.value = '';
+    this._buttonForm.disabled = true;
+  }
 
 }
