@@ -13,7 +13,6 @@ export const buttonOpenPopupMesto = document.querySelector('.profile__button-add
 export const nameInput = document.querySelector('#popup_name-profile');
 export const jobInput = document.querySelector('#popup_work-profile');
 
-<<<<<<< HEAD
 export const buttonDellCard = document.querySelector('.popup__button-dell'); 
 
 export const info = {
@@ -26,9 +25,3 @@ export const apiConfig = {
   identifikator: 'cohort-63',
   myId: 'a223bade518154c9f9b0df0e'
 };
-=======
-export const api = {
-  token: 'c564ddc3-f58f-47cc-aac8-027be5fd7e89',
-  identifikator: 'cohort-63'
-}
->>>>>>> 70395234ea9fc68dc297996de76900764327175f
