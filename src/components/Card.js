@@ -1,12 +1,18 @@
+
 export class Card {
 
-  constructor(initialCards, templateSelector, {handleCardClick}) {
+  constructor(initialCards, templateSelector, {handleCardClick, likeCard, likeDelCard}) {
     this._name = initialCards.name;
     this._link = initialCards.link;
+    this._liks = initialCards.likes.length;
+    this._myLike = initialCards.likes,
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-
+    this._likeCard = likeCard;
+    this._likeDelCard = likeDelCard;
+    this._popup = document.querySelector('#popup_dell-card');
+    
   }
 
   // получить шаблон карточки
@@ -23,25 +29,20 @@ export class Card {
 
   // сделать кнопку лайка активной
   _likeActive(){
-    this._likeButton.classList.toggle("plases-card__like_active");
+
+    if (this._likeButton.classList.contains('plases-card__like_active')){
+      this._likeButton.classList.remove('plases-card__like_active');
+      this._likeDelCard();
+    } else{
+      this._likeButton.classList.add('plases-card__like_active');
+      this._likeCard();
+    }
   }
 
   // слушатель кнопки лайка
   _likeListeners() {
     this._likeButton.addEventListener('click', () => {
       this._likeActive();
-    });  
-  }
-
-  // удалить карточку
-  _dellCard(){
-    this._element.remove();
-  }
-
-  // слушатель кнопки удалить карточку
-  _dellCardListeners() {
-    this._dellCardButton.addEventListener('click', () => {
-      this._dellCard();
     });  
   }
 
@@ -55,18 +56,29 @@ export class Card {
   //добавить слушатели обработчики
   _addListenersCard(){
     this._likeListeners(); // добавим обработчики кнопки лайк
-    this._dellCardListeners(); // добавим обработчики кнопки удалить карточку
     this._setEventListener(); // добавим обработчики попап картинки
   }
 
   // заполнить карточку данными
-  generateCard() {
+  generateCard(myId) {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._likeButton = this._element.querySelector('.plases-card__like');
     this._dellCardButton = this._element.querySelector('.plases-card__del')
+
     this._plasesCardImg = this._element.querySelector('.plases-card__img');
+    this._countLiks = this._element.querySelector('.plases-card__like-count');
+
+    // если мы лайкали карточку то будет сердечко активное
+    if (this._myLike){
+      this._myLike.forEach(element => {
+        if (element['_id'] == myId){
+          this._likeButton.classList.add('plases-card__like_active');
+        }
+      });
+    };
+
 
     this._addListenersCard();
 
@@ -74,6 +86,8 @@ export class Card {
     const buttonImg = this._element.querySelector('.plases-card__img');
     buttonImg.src = this._link;
     buttonImg.alt = this._name;
+    this._countLiks.textContent = this._liks;
+
     this._element.querySelector('.plases-card__title').textContent = this._name;
   
     // Вернём элемент наружу

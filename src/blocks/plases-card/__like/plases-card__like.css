@@ -1,11 +1,9 @@
 .plases-card__like {
-  height: 19px;
   width: 22px;
-  background-image: url(../../../images/like.svg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
   background-repeat: no-repeat;
-  background-position: center;
-  border: none;
-  cursor: pointer;
-  padding-top: 10px;
-  background-color: transparent;
+
 }

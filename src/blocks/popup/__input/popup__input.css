@@ -10,6 +10,10 @@
   outline:none;
 }
 
+#popup__link-place-error {
+  padding-bottom: 48px;
+}
+
 @media (max-width:768px) {
   .popup__input {
     font-size: 14px;

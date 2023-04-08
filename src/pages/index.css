@@ -12,6 +12,7 @@
 /*profile*/
 @import url(../blocks/profile/profile.css);
   @import url(../blocks/profile/__avatar/profile__avatar.css);
+  @import url(../blocks/profile/__avatar-button/profile__avatar-button.css);
   @import url(../blocks/profile/__button-add/profile__button-add.css);
 @import url(../blocks/profile-info/profile-info.css);
   @import url(../blocks/profile-info/__title/profile-info__title.css);
@@ -23,10 +24,13 @@
 @import url(../blocks/plases-card/plases-card.css);
   @import url(../blocks/plases-card/__img/plases-card__img.css);
   @import url(../blocks/plases-card/__del/plases-card__del.css);
+    @import url(../blocks/plases-card/__del/_opasiti/plases-card__del_opasiti.css);
   @import url(../blocks/plases-card/__card-title/plases-card__card-title.css);
   @import url(../blocks/plases-card/__title/plases-card__title.css);
   @import url(../blocks/plases-card/__like/plases-card__like.css);
-  @import url(../blocks/plases-card/__like/_active/plases-card__like_active.css);
+    @import url(../blocks/plases-card/__like/__like-button/plases-card__like-button.css);
+    @import url(../blocks/plases-card/__like/__like-count/plases-card__like-count.css);
+    @import url(../blocks/plases-card/__like/_active/plases-card__like_active.css);
 
 /*footer*/
 @import url(../blocks/footer/footer.css);
@@ -35,11 +39,13 @@
 /*popup*/
 @import url(../blocks/popup/popup.css);
   @import url(../blocks/popup/__eddit-form/popup__eddit-form.css);
+  @import url(../blocks/popup/__question-dell/popup__question-dell.css);
   @import url(../blocks/popup/__close-button/popup__close-button.css);
   @import url(../blocks/popup/__title/popup__title.css);
   @import url(../blocks/popup/__input/popup__input.css);
   @import url(../blocks/popup/__input-error/popup__input-error.css);
   @import url(../blocks/popup/__button/popup__button.css);
+  @import url(../blocks/popup/__button-dell/popup__button-dell.css);
   @import url(../blocks/popup/__figure/popup__figure.css);
   @import url(../blocks/popup/__image/popup__image.css);
   @import url(../blocks/popup/__caption/popup__caption.css);

@@ -38,5 +38,5 @@ export class Popup{
     this._closeButtons.addEventListener('click', () => this.close());
     this._popup.addEventListener('mousedown', (evt) => this._handleClikClose(evt));
   }
-}
 
+}

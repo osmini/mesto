@@ -15,12 +15,15 @@
   <main id="main">
 
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Аватар автора">
-  
+
+      <button class="profile__avatar-button" type="button" aria-label="кнопка изменение информации профиля" >
+        <img class="profile__avatar" src="" alt="Аватар автора">
+      </button>
+
       <div class="profile-info">
-        <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+        <h1 class="profile-info__title"></h1>
         <button class="profile-info__button-edit animation-hover" type="button" aria-label="кнопка изменение информации профиля" ></button>
-        <p class="profile-info__subtitle">Исследователь океана</p>
+        <p class="profile-info__subtitle"></p>
       </div>
   
       <button class="profile__button-add animation-hover" type="button" aria-label="кнопка добавления места"></button>
@@ -31,10 +34,13 @@
       <template id="plases-card">
         <article  class="plases-card" aria-label="места России">
           <img class="plases-card__img" src="./images/karahevsk.png" alt="Карачаевск">
-          <button class="plases-card__del animation-hover" type="button" aria-label="кнопка удалить"></button>
+          <button class="plases-card__del animation-hover " type="button" aria-label="кнопка удалить"></button>
           <div class="plases-card__card-title">
             <h2 class="plases-card__title">Карачаевск</h2>
-            <button class="plases-card__like hover-like" type="button" aria-label="кнопка лайк"></button>
+            <div class="plases-card__like">
+              <button class="plases-card__like-button hover-like" type="button" aria-label="кнопка лайк"></button>
+              <div class="plases-card__like-count" ></div>
+            </div>
           </div>
         </article>
       </template>
@@ -51,7 +57,7 @@
           <span class="popup__input-error" id="popup_name-profile-error"></span>
           <input class="popup__input" id="popup_work-profile" type="text" value="Исследователь океана" minlength=2 maxlength=200 name="popup_work" required placeholder="">
           <span class="popup__input-error" id="popup_work-profile-error"></span>
-          <button class="popup__button hover-batton" id="popup_button-profile" type="submit">Сохранить</button>
+          <button class="popup__button hover-batton" id="popup_button-profile" type="submit">Сохранение...</button>
         </form>
       </div>
 
@@ -67,7 +73,7 @@
           <span class="popup__input-error" id="popup__name-place-error"></span>
           <input class="popup__input" id="popup__link-place" type="url" name="popup_link" required  placeholder="Ссылка на картинку">
           <span class="popup__input-error" id="popup__link-place-error"></span>
-          <button class="popup__button hover-batton" id="popup_button-place" type="submit">Создать</button>
+          <button class="popup__button hover-batton" id="popup_button-place" type="submit">Сохранение...</button>
         </form>
       </div>
 
@@ -80,6 +86,30 @@
         <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg" alt="Обложка сайта">
         <figcaption class="popup__caption"></figcaption>
       </figure>
+
+    </section>
+
+    <section class="popup" id="popup_dell-card" aria-label="попап подтверждения удаления карточки">
+
+      <div class="popup__question-dell">
+        <button class="popup__close-button animation-hover" id="popup_dell-card-close" type="button" aria-label="кнопка закрыть попап"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__button-dell hover-batton" id="popup_button-place" type="submit">Да</button>
+      </div>
+
+    </section>
+
+    <section class="popup" id="popup_avatar" aria-label="карточка добавления места">
+
+      <div class="popup__eddit-form">
+        <button class="popup__close-button animation-hover" id="popup_avatar-close" type="button" aria-label="кнопка закрыть попап"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" id="popup_form-avatar" name="popup_avatar" novalidate >
+          <input class="popup__input" id="popup__link-avatar" type="url" name="popup_link" required  placeholder="Ссылка на картинку">
+          <span class="popup__input-error" id="popup__link-avatar-error"></span>
+          <button class="popup__button hover-batton" id="popup_button-avatar" type="submit">Сохранить</button>
+        </form>
+      </div>
 
     </section>
 
