@@ -2,12 +2,11 @@ import {Card} from '../components/Card.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {PopupDellCard} from '../components/PopupDellCard.js';
-import {PopupAvatar} from '../components/PopupAvatar.js';
+import {PopupConfirmation} from '../components/PopupConfirmation.js';
 import {Api} from '../components/Api.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {setings, apiConfig, buttonOpenPopupProfile, buttonOpenPopupMesto, nameInput, jobInput, info} from '../date/date.js';
+import {setings, apiConfig, buttonOpenPopupProfile, buttonOpenPopupMesto, edditButtonAvatar, nameInput, jobInput, info} from '../date/date.js';
 import './../pages/index.css';
 
 // экземпляры валидации форм
@@ -21,56 +20,78 @@ validAvatar.enableValidation();
 // ари яндекс
 const apiYandex =  new Api(apiConfig);
 
-// отрисовка на странице пользователя с сервера
-apiYandex.getInfoUserForServer();
+// отрисовка на странице информации пользователя с сервера
+apiYandex.getInfoUserForServer()
+  .then(res =>{
+    // экземпляр изменения данных о пользователе 
+    const infoUser = new UserInfo();
+    console.log(res);
+    infoUser.setUserInfo(res['name'], res['about'], res['avatar']);
 
-// экземпляр изменения данных о пользователе 
-const infoUser = new UserInfo(info);
+    // попап изменения информации о пользователе
+    const popupProfile = new PopupWithForm('#popup_profile',  {
+      submitHandler: (evt, dateProfile) => { 
+      
+        evt.preventDefault(); 
+      
+        const plaseInfo = dateProfile;
+        const name = plaseInfo.popup_name; 
+        const work = plaseInfo.popup_work;
+      
+        apiYandex.patchInfoUserForServer(name, work)
+        .catch(err => {
+          console.log(err);
+        });
+            
+        infoUser.setUserInfo(name, work);
+        popupProfile.close();
+        
+        }
+      })
 
-// экземпляр изменения аватара
-const popupAvatar = new PopupAvatar('#popup_avatar', {
-  appAvatar: (evt, avatar) =>{
+    // открыть попап для редактирования профиля
+    buttonOpenPopupProfile.addEventListener('click', function(){
+
+      popupProfile.open();
+      const textUser = infoUser.getUserInfo();
+      nameInput.value = textUser.dateTitle;
+      jobInput.value = textUser.dateSubtitle 
+    });
+
+    popupProfile.setEventListeners();
+      
+  })
+
+  .catch(err => {
+    console.log(err);
+  });
+
+// попап редактирование аватара
+const popupAvatar = new PopupWithForm('#popup_avatar', {
+  submitHandler: (evt, dateProfile) => { 
+
     evt.preventDefault(); 
-    apiYandex.patchAvatarForServer(avatar);
-  }
-});
-
-popupAvatar.setEventListeners();
-
-
-// попап изменения информации о пользователе
-const popupProfile = new PopupWithForm('#popup_profile',  {
-  appDate: (evt, dateProfile) => { 
+    apiYandex.patchAvatarForServer(dateProfile.popup_link)
+    .catch(err => {
+      console.log(err);
+    });
   
-    evt.preventDefault(); 
-  
-    const plaseInfo = dateProfile;
-    const name = plaseInfo.popup_name; 
-    const work = plaseInfo.popup_work;
-  
-    apiYandex.patchInfoUserForServer(name, work)
-    infoUser.setUserInfo(name, work);
-    popupProfile.close();
-    
+    popupAvatar.close();
+
     }
   }
 );
 
-popupProfile.setEventListeners();
+popupAvatar.setEventListeners();
 
-// попап просмотра изображения большой картинкой
-const popupMestoImg = new PopupWithImage('#popup_img');
-popupMestoImg.setEventListeners();
-
-// открыть попап для редактирования профиля
-buttonOpenPopupProfile.addEventListener('click', function(){
-
-  const textUser = infoUser.getUserInfo();
-  nameInput.value = textUser.dateTitle;
-  jobInput.value = textUser.dateSubtitle 
-  popupProfile.open();
+edditButtonAvatar.addEventListener('click', function(){ 
+  validAvatar.resetValidation();
+  popupAvatar.open();
 }); 
 
+// попап просмотра изображения большой картинкой
+const popupImage = new PopupWithImage('#popup_img');
+popupImage.setEventListeners();
 
 // отрисовка карточек с сервера
 apiYandex.getCardsForServer()
@@ -79,27 +100,46 @@ apiYandex.getCardsForServer()
     // создать карточку
     function createCard(item) {
       const card = new Card(item, '#plases-card',  {
+        items: res,
         handleCardClick: ( name, link) => {  
-          popupMestoImg.open(name, link); 
+          popupImage.open(name, link); 
           },
         likeCard:() =>{
-          apiYandex.putLikeForServer(item['_id']);
+          apiYandex.putLikeForServer(item['_id'])
+          .catch(err => {
+            console.log(err);
+          });        
         },
         likeDelCard:() =>{
-          apiYandex.deleteLikeForServer(item['_id']);
-        }  
+          apiYandex.deleteLikeForServer(item['_id'])
+          .catch(err => {
+            console.log(err);
+          });        
+        }
       });
-      
-      // Создаём карточку и возвращаем наружу
+
       const cardElement = card.generateCard(apiConfig.myId);
 
+      // попап удаления своей карточки
+      const cardId = card.examinationMyCard(apiConfig.myId);
+      const popupConfirmation = new PopupConfirmation('#popup_dell-card', cardElement, {
+        dellMyCards: ()=> {
+            apiYandex.deleteCardForServer(cardId)
+            .catch(err => {
+              console.log(err);
+            });                   
+            popupConfirmation.close();
+          }
+        })
+      
+      popupConfirmation.setEventListeners();
       return cardElement
+
     }
 
-
     // попап добавления карточки
-    const popupMesto = new PopupWithForm('#popup_mesto', {
-      appDate: (evt, dateProfile) => { 
+    const popupAddCard = new PopupWithForm('#popup_mesto', {
+      submitHandler: (evt, dateProfile) => { 
 
         evt.preventDefault(); 
         const plaseInfo = dateProfile;
@@ -113,52 +153,43 @@ apiYandex.getCardsForServer()
         ];
 
         const cardElement = createCard(newCardDate[0]);
-        apiYandex.postCardsForServer(newCardDate[0]);
-        cards.prependItem(cardElement);
-        popupMesto.close();
-
+        
+        apiYandex.postCardsForServer(newCardDate[0])
+          .then( ()=> {
+            cards.prependItem(cardElement);
+            popupAddCard.close();
+          })
+          .catch(err => {
+            console.log(err);
+          });  
         }
       }
     );
 
-    popupMesto.setEventListeners();
+    popupAddCard.setEventListeners();
 
     // открыть попап для добавления карточки места
     buttonOpenPopupMesto.addEventListener('click', function(){ 
       validMesto.resetValidation();
-      popupMesto.open();
+      popupAddCard.open();
     }); 
+
 
     // отрисовка карточек через взаимодействие классов
     const cards = new Section({
-    items: res,
-    render: (messageItem, myCard, myCardId) => {
-      const cardElement = createCard(messageItem);
-
-      //проверка что карточка наша тогда можем удалить её
-      if (myCard == 0){
-        cardElement.querySelector('.plases-card__del').classList.add('plases-card__del_opasiti');
-      }else {
-        
-        const popupDellCard = new PopupDellCard('#popup_dell-card', cardElement, {
-          dellMyCards: ()=> {
-            apiYandex.deleteCardForServer(myCardId);
-          }
-        });
-        popupDellCard.setEventListeners();
-      };
-
-
-            
-      // Добавляем в DOM
-      cards.addItem(cardElement);
-    }
+      items: res,
+      render: (messageItem) => {
+          const cardElement = createCard(messageItem);
+          
+          // Добавляем в DOM
+          cards.addItem(cardElement);
+        }
       },
-    '.plases'
+      '.plases'
     ); 
 
-    cards.renderItems(apiConfig.myId); 
-    
+    cards.renderItems(); 
+
   })
 
   .catch(err => {

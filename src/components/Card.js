@@ -6,8 +6,9 @@ export class Card {
     this._link = initialCards.link;
     this._liks = initialCards.likes.length;
     this._myLike = initialCards.likes,
-
     this._templateSelector = templateSelector;
+
+    this._card = initialCards;
     this._handleCardClick = handleCardClick;
     this._likeCard = likeCard;
     this._likeDelCard = likeDelCard;
@@ -59,6 +60,19 @@ export class Card {
     this._setEventListener(); // добавим обработчики попап картинки
   }
 
+  // проверить карточка наша или нет
+  examinationMyCard(myId){
+    //проверка что карточка наша 
+    if(this._card.hasOwnProperty('owner')){
+      if (myId == this._card['owner']['_id']){
+        this.myCardId = this._card['_id']
+        return this.myCardId;
+      } else {
+        this._element.querySelector('.plases-card__del').classList.add('plases-card__del_opasiti');
+      }
+    }
+  }
+
   // заполнить карточку данными
   generateCard(myId) {
     // Запишем разметку в приватное поле _element. 
@@ -79,7 +93,6 @@ export class Card {
       });
     };
 
-
     this._addListenersCard();
 
     // Добавим данные
@@ -89,8 +102,9 @@ export class Card {
     this._countLiks.textContent = this._liks;
 
     this._element.querySelector('.plases-card__title').textContent = this._name;
-  
+
     // Вернём элемент наружу
     return this._element;
   } 
+  
 }

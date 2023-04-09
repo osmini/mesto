@@ -3,11 +3,11 @@ import {Popup} from './Popup.js';
 // В методе open класса PopupWithForm нужно вставлять в попап картинку с src изображения и подписью к картинке.
 export class PopupWithForm extends Popup{
   
-  constructor(popup,  {appDate}){
+  constructor(popup, {submitHandler}){
     super(popup);
     this._form = this._popup.querySelector('.popup__form');
     this.inputs = this._form.querySelectorAll('.popup__input');
-    this._appDate = appDate;
+    this._submitHandler = submitHandler;
   }
 
   // собирает данные всех полей формы.
@@ -24,10 +24,12 @@ export class PopupWithForm extends Popup{
 
   // слушатель клика иконки закрытия попапа
   setEventListeners(){
+
     this._form.addEventListener('submit', (evt) => {
-      this._appDate(evt, this._getInputValues())
+      this._submitHandler(evt, this._getInputValues())
     });
     super.setEventListeners();
   }
-
 }
+
+

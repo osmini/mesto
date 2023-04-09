@@ -1,7 +1,7 @@
 import {Popup} from './Popup.js';
 
 // В методе open класса PopupWithForm нужно вставлять в попап картинку с src изображения и подписью к картинке.
-export class PopupDellCard extends Popup{
+export class PopupConfirmation extends Popup{
   
   constructor(popup, cardElement, {dellMyCards}){
     super(popup);
@@ -11,6 +11,10 @@ export class PopupDellCard extends Popup{
     this._dellMyCards = dellMyCards;
   }
 
+
+  close(){
+    super.close();
+  }
 
   // слушатель клика иконки закрытия попапа
   setEventListeners(){
@@ -23,7 +27,6 @@ export class PopupDellCard extends Popup{
         this._dellCardSoglasie.addEventListener('click', ()=> {
           this._dellMyCards();
           this._cardElement.remove();
-          super.close();
         })
       });
     }

@@ -19,6 +19,17 @@ export class Section {
       this._container.prepend(element);
     }
 
+
+
+    // создаем карточку и вставляем на страницу
+    renderItems(){
+      // циклом добавляем карточки на страницу
+      this._initialArray.forEach(item => {
+        this._render(item); // вызываем renderer, передав item
+      }); 
+    }
+
+    /*
 		// создаем карточку и вставляем на страницу
     renderItems(myId){
       
@@ -36,6 +47,6 @@ export class Section {
 
 				this._render(item, this.myCard, this.myCardId); // вызываем renderer, передав item
 			}); 
-    }
+    }*/
 }
 

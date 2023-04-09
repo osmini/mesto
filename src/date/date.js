@@ -14,6 +14,7 @@ export const nameInput = document.querySelector('#popup_name-profile');
 export const jobInput = document.querySelector('#popup_work-profile');
 
 export const buttonDellCard = document.querySelector('.popup__button-dell'); 
+export const edditButtonAvatar = document.querySelector('.profile__avatar-button');
 
 export const info = {
   infoTitle: document.querySelector('.profile-info__title'),
