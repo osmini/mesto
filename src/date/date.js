@@ -15,11 +15,8 @@ export const jobInput = document.querySelector('#popup_work-profile');
 
 export const buttonDellCard = document.querySelector('.popup__button-dell'); 
 export const edditButtonAvatar = document.querySelector('.profile__avatar-button');
+export const avatar = document.querySelector('.profile__avatar');
 
-export const info = {
-  infoTitle: document.querySelector('.profile-info__title'),
-  infoSubtitle: document.querySelector('.profile-info__subtitle')
-};
 
 export const apiConfig = {
   token: 'c564ddc3-f58f-47cc-aac8-027be5fd7e89',

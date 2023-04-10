@@ -101,6 +101,13 @@ export class Card {
     buttonImg.alt = this._name;
     this._countLiks.textContent = this._liks;
 
+    if (this._liks){
+      this._countLiks.textContent = this._liks;
+    } else {
+    this._countLiks.textContent = 0;
+    }
+
+
     this._element.querySelector('.plases-card__title').textContent = this._name;
 
     // Вернём элемент наружу

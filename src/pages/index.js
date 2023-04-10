@@ -6,7 +6,7 @@ import {PopupConfirmation} from '../components/PopupConfirmation.js';
 import {Api} from '../components/Api.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {setings, apiConfig, buttonOpenPopupProfile, buttonOpenPopupMesto, edditButtonAvatar, nameInput, jobInput, info} from '../date/date.js';
+import {setings, apiConfig, buttonOpenPopupProfile, buttonOpenPopupMesto, edditButtonAvatar, nameInput, jobInput, avatar} from '../date/date.js';
 import './../pages/index.css';
 
 // экземпляры валидации форм
@@ -25,7 +25,6 @@ apiYandex.getInfoUserForServer()
   .then(res =>{
     // экземпляр изменения данных о пользователе 
     const infoUser = new UserInfo();
-    console.log(res);
     infoUser.setUserInfo(res['name'], res['about'], res['avatar']);
 
     // попап изменения информации о пользователе
@@ -72,6 +71,9 @@ const popupAvatar = new PopupWithForm('#popup_avatar', {
 
     evt.preventDefault(); 
     apiYandex.patchAvatarForServer(dateProfile.popup_link)
+    .then(res =>{
+      avatar.src = res.avatar;
+    })
     .catch(err => {
       console.log(err);
     });
@@ -104,26 +106,36 @@ apiYandex.getCardsForServer()
         handleCardClick: ( name, link) => {  
           popupImage.open(name, link); 
           },
-        likeCard:() =>{
+          likeCard:() =>{
+            console.log(item);
           apiYandex.putLikeForServer(item['_id'])
+          .then(res =>{
+            const countLike = cardElement.querySelector('.plases-card__like-count');
+            countLike.textContent = res.likes.length;
+          })
           .catch(err => {
             console.log(err);
           });        
-        },
-        likeDelCard:() =>{
+          },
+          likeDelCard:() =>{
           apiYandex.deleteLikeForServer(item['_id'])
+          .then(res =>{
+            const countLike = cardElement.querySelector('.plases-card__like-count');
+            countLike.textContent = res.likes.length;
+          })
           .catch(err => {
             console.log(err);
-          });        
-        }
-      });
-
+          });
+        }        
+      })
+      
       const cardElement = card.generateCard(apiConfig.myId);
 
       // попап удаления своей карточки
       const cardId = card.examinationMyCard(apiConfig.myId);
       const popupConfirmation = new PopupConfirmation('#popup_dell-card', cardElement, {
         dellMyCards: ()=> {
+
             apiYandex.deleteCardForServer(cardId)
             .catch(err => {
               console.log(err);
@@ -136,44 +148,6 @@ apiYandex.getCardsForServer()
       return cardElement
 
     }
-
-    // попап добавления карточки
-    const popupAddCard = new PopupWithForm('#popup_mesto', {
-      submitHandler: (evt, dateProfile) => { 
-
-        evt.preventDefault(); 
-        const plaseInfo = dateProfile;
-      
-        const newCardDate = [ 
-          {
-            name: plaseInfo.popup_name,
-            link: plaseInfo.popup_link,
-            likes: 0
-          }
-        ];
-
-        const cardElement = createCard(newCardDate[0]);
-        
-        apiYandex.postCardsForServer(newCardDate[0])
-          .then( ()=> {
-            cards.prependItem(cardElement);
-            popupAddCard.close();
-          })
-          .catch(err => {
-            console.log(err);
-          });  
-        }
-      }
-    );
-
-    popupAddCard.setEventListeners();
-
-    // открыть попап для добавления карточки места
-    buttonOpenPopupMesto.addEventListener('click', function(){ 
-      validMesto.resetValidation();
-      popupAddCard.open();
-    }); 
-
 
     // отрисовка карточек через взаимодействие классов
     const cards = new Section({
@@ -189,6 +163,53 @@ apiYandex.getCardsForServer()
     ); 
 
     cards.renderItems(); 
+
+    // попап добавления карточки
+    const popupAddCard = new PopupWithForm('#popup_mesto', {
+      submitHandler: (evt, dateProfile) => { 
+
+        evt.preventDefault(); 
+        
+        const newCardDate = [ 
+          {
+            name: dateProfile.popup_name,
+            link: dateProfile.popup_link,
+            likes: 0,
+          }
+        ];
+        
+        apiYandex.postCardsForServer(newCardDate[0])
+          .then( (res)=> {
+            
+            popupAddCard.close();
+
+            const newCardDate = [ 
+              {
+                name: res.name,
+                link: res.link,
+                likes: 0,
+                _id: res._id
+              }
+            ];
+
+            const cardElement = createCard(newCardDate[0]);
+            cards.prependItem(cardElement);
+            
+          })
+          .catch(err => {
+            console.log(err);
+          });  
+        }
+      }
+    );
+
+    popupAddCard.setEventListeners();
+
+    // открыть попап для добавления карточки места
+    buttonOpenPopupMesto.addEventListener('click', function(){ 
+      validMesto.resetValidation();
+      popupAddCard.open();
+    }); 
 
   })
 

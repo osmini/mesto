@@ -29,24 +29,5 @@ export class Section {
       }); 
     }
 
-    /*
-		// создаем карточку и вставляем на страницу
-    renderItems(myId){
-      
-			// циклом добавляем карточки на страницу
-			this._initialArray.forEach(item => {
-
-        //проверка что карточка наша тогда можем удалить её, если 0 карточка не наша
-        if (myId != item['owner']['_id']){
-          this.myCard = 0;
-        }
-        else {
-          this.myCard = 1;
-          this.myCardId = item['_id']
-        };
-
-				this._render(item, this.myCard, this.myCardId); // вызываем renderer, передав item
-			}); 
-    }*/
 }
 
