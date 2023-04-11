@@ -18,68 +18,78 @@ const validAvatar = new FormValidator(setings, '#popup_form-avatar');
 validAvatar.enableValidation();
 
 // ари яндекс
-const apiYandex =  new Api(apiConfig);
+const apiYandex = new Api(apiConfig);
+
+// экземпляр изменения данных о пользователе 
+const infoUser = new UserInfo();
+
+// попап изменения информации о пользователе
+const popupProfile = new PopupWithForm('#popup_profile',  {
+  submitHandler: (evt, dateProfile) => { 
+
+      evt.preventDefault(); 
+      popupProfile.renderLoading(true);
+
+      const plaseInfo = dateProfile;
+      const name = plaseInfo.popup_name; 
+      const work = plaseInfo.popup_work;
+
+      apiYandex.patchInfoUserForServer(name, work)
+        .then (res =>{
+          infoUser.setUserInfo(res['name'], res['about']);
+          popupProfile.close();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          popupProfile.renderLoading(false);
+        })
+    }
+})
+
+// открыть попап для редактирования профиля
+buttonOpenPopupProfile.addEventListener('click', function(){
+
+  popupProfile.open();
+  const textUser = infoUser.getUserInfo();
+  nameInput.value = textUser.dateTitle;
+  jobInput.value = textUser.dateSubtitle 
+});
+
+popupProfile.setEventListeners();
 
 // отрисовка на странице информации пользователя с сервера
 apiYandex.getInfoUserForServer()
   .then(res =>{
-    // экземпляр изменения данных о пользователе 
-    const infoUser = new UserInfo();
+
+    // изменение данных пользователя
     infoUser.setUserInfo(res['name'], res['about'], res['avatar']);
-
-    // попап изменения информации о пользователе
-    const popupProfile = new PopupWithForm('#popup_profile',  {
-      submitHandler: (evt, dateProfile) => { 
-      
-        evt.preventDefault(); 
-      
-        const plaseInfo = dateProfile;
-        const name = plaseInfo.popup_name; 
-        const work = plaseInfo.popup_work;
-      
-        apiYandex.patchInfoUserForServer(name, work)
-        .catch(err => {
-          console.log(err);
-        });
-            
-        infoUser.setUserInfo(name, work);
-        popupProfile.close();
-        
-        }
-      })
-
-    // открыть попап для редактирования профиля
-    buttonOpenPopupProfile.addEventListener('click', function(){
-
-      popupProfile.open();
-      const textUser = infoUser.getUserInfo();
-      nameInput.value = textUser.dateTitle;
-      jobInput.value = textUser.dateSubtitle 
-    });
-
-    popupProfile.setEventListeners();
-      
   })
 
   .catch(err => {
     console.log(err);
   });
 
+
 // попап редактирование аватара
 const popupAvatar = new PopupWithForm('#popup_avatar', {
   submitHandler: (evt, dateProfile) => { 
 
     evt.preventDefault(); 
-    apiYandex.patchAvatarForServer(dateProfile.popup_link)
-    .then(res =>{
-      avatar.src = res.avatar;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  
-    popupAvatar.close();
 
+    popupAvatar.renderLoading(true);
+    apiYandex.patchAvatarForServer(dateProfile.popup_link)
+      .then(res =>{
+        avatar.src = res.avatar;
+        popupAvatar.close();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupAvatar.renderLoading(false);
+      })
     }
   }
 );
@@ -95,68 +105,69 @@ edditButtonAvatar.addEventListener('click', function(){
 const popupImage = new PopupWithImage('#popup_img');
 popupImage.setEventListeners();
 
+
+// попап удаления своей карточки
+const popupConfirmation = new PopupConfirmation('#popup_dell-card', {
+  dellMyCards: (cardId)=> {
+      apiYandex.deleteCardForServer(cardId)
+        .then( ()=> {
+          popupConfirmation.close();
+        })
+        .catch(err => {
+          console.log(err);
+        });                   
+    }
+  })
+
+
 // отрисовка карточек с сервера
-apiYandex.getCardsForServer()
-  .then(res =>{
+Promise.all ([apiYandex.getCardsForServer(), apiYandex.getInfoUserForServer()])
+  .then(([cardsData, userData])=>{
 
     // создать карточку
     function createCard(item) {
-      const card = new Card(item, '#plases-card',  {
-        items: res,
+      const card = new Card(item, userData._id, '#plases-card',  {
+        items: cardsData,
         handleCardClick: ( name, link) => {  
           popupImage.open(name, link); 
           },
           likeCard:() =>{
-            console.log(item);
           apiYandex.putLikeForServer(item['_id'])
-          .then(res =>{
-            const countLike = cardElement.querySelector('.plases-card__like-count');
-            countLike.textContent = res.likes.length;
-          })
-          .catch(err => {
-            console.log(err);
-          });        
+            .then(res =>{
+              const countLike = cardElement.querySelector('.plases-card__like-count');
+              countLike.textContent = res.likes.length;
+            })
+            .catch(err => {
+              console.log(err);
+            });        
           },
           likeDelCard:() =>{
-          apiYandex.deleteLikeForServer(item['_id'])
-          .then(res =>{
-            const countLike = cardElement.querySelector('.plases-card__like-count');
-            countLike.textContent = res.likes.length;
-          })
-          .catch(err => {
-            console.log(err);
-          });
+            apiYandex.deleteLikeForServer(item['_id'])
+            .then(res =>{
+              const countLike = cardElement.querySelector('.plases-card__like-count');
+              countLike.textContent = res.likes.length;
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }        
       })
       
       const cardElement = card.generateCard(apiConfig.myId);
+      popupConfirmation.setEventListeners(cardElement, item['_id']);
 
-      // попап удаления своей карточки
-      const cardId = card.examinationMyCard(apiConfig.myId);
-      const popupConfirmation = new PopupConfirmation('#popup_dell-card', cardElement, {
-        dellMyCards: ()=> {
-
-            apiYandex.deleteCardForServer(cardId)
-            .catch(err => {
-              console.log(err);
-            });                   
-            popupConfirmation.close();
-          }
-        })
-      
-      popupConfirmation.setEventListeners();
       return cardElement
 
     }
 
     // отрисовка карточек через взаимодействие классов
     const cards = new Section({
-      items: res,
+      items: cardsData,
       render: (messageItem) => {
           const cardElement = createCard(messageItem);
           
           // Добавляем в DOM
-          cards.addItem(cardElement);
+          cards.prependItem(cardElement);
         }
       },
       '.plases'
@@ -169,6 +180,7 @@ apiYandex.getCardsForServer()
       submitHandler: (evt, dateProfile) => { 
 
         evt.preventDefault(); 
+        popupAddCard.renderLoading(true);
         
         const newCardDate = [ 
           {
@@ -193,19 +205,24 @@ apiYandex.getCardsForServer()
             ];
 
             const cardElement = createCard(newCardDate[0]);
-            cards.prependItem(cardElement);
+
+            cards.addItem(cardElement);
             
           })
           .catch(err => {
             console.log(err);
-          });  
+          }) 
+          .finally(() => {
+            popupAddCard.renderLoading(false);
+          })
+          
         }
       }
     );
 
     popupAddCard.setEventListeners();
 
-    // открыть попап для добавления карточки места
+    // открыть попап для просмотра карточки места
     buttonOpenPopupMesto.addEventListener('click', function(){ 
       validMesto.resetValidation();
       popupAddCard.open();

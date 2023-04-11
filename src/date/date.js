@@ -21,5 +21,6 @@ export const avatar = document.querySelector('.profile__avatar');
 export const apiConfig = {
   token: 'c564ddc3-f58f-47cc-aac8-027be5fd7e89',
   identifikator: 'cohort-63',
-  myId: 'a223bade518154c9f9b0df0e'
+  myId: 'a223bade518154c9f9b0df0e',
+  zapros: 'https://mesto.nomoreparties.co/v1'
 };

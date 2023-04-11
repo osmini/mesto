@@ -6,17 +6,16 @@ export class Section {
 				this._render = render; 
 
         this._container = document.querySelector(`${selector}`);
-        this.myCard = 0;
     }
 
 		// вставляем элемент в конец на страницу
     addItem(element){
-      this._container.append(element);
+      this._container.prepend(element);
     }
 
     // вставляем элемент в начало на страницу
     prependItem(element){
-      this._container.prepend(element);
+      this._container.append(element);
     }
 
 

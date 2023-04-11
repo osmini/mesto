@@ -1,12 +1,13 @@
 
 export class Card {
 
-  constructor(initialCards, templateSelector, {handleCardClick, likeCard, likeDelCard}) {
+  constructor(initialCards, myId, templateSelector, {handleCardClick, likeCard, likeDelCard}) {
     this._name = initialCards.name;
     this._link = initialCards.link;
     this._liks = initialCards.likes.length;
     this._myLike = initialCards.likes,
     this._templateSelector = templateSelector;
+    this._myId = myId,
 
     this._card = initialCards;
     this._handleCardClick = handleCardClick;
@@ -60,11 +61,12 @@ export class Card {
     this._setEventListener(); // добавим обработчики попап картинки
   }
 
+
   // проверить карточка наша или нет
-  examinationMyCard(myId){
+  _examinationMyCard(){
     //проверка что карточка наша 
     if(this._card.hasOwnProperty('owner')){
-      if (myId == this._card['owner']['_id']){
+      if (this._myId == this._card['owner']['_id']){
         this.myCardId = this._card['_id']
         return this.myCardId;
       } else {
@@ -74,7 +76,7 @@ export class Card {
   }
 
   // заполнить карточку данными
-  generateCard(myId) {
+  generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
@@ -87,12 +89,13 @@ export class Card {
     // если мы лайкали карточку то будет сердечко активное
     if (this._myLike){
       this._myLike.forEach(element => {
-        if (element['_id'] == myId){
+        if (element['_id'] == this._myId){
           this._likeButton.classList.add('plases-card__like_active');
         }
       });
     };
 
+    this._examinationMyCard();
     this._addListenersCard();
 
     // Добавим данные

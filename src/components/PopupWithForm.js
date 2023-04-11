@@ -1,6 +1,6 @@
 import {Popup} from './Popup.js';
 
-// В методе open класса PopupWithForm нужно вставлять в попап картинку с src изображения и подписью к картинке.
+//  класс PopupWithForm для работы с формами в попапах
 export class PopupWithForm extends Popup{
   
   constructor(popup, {submitHandler}){
@@ -15,7 +15,6 @@ export class PopupWithForm extends Popup{
   _getInputValues(){
 
     this.plaseInfo = {};
-
     this.inputs.forEach((input) => {
       this.plaseInfo[input.name] = input.value;
     })
@@ -23,14 +22,32 @@ export class PopupWithForm extends Popup{
     return this.plaseInfo;
   }
 
+  //закрыть попап
+  close(){
+    super.close();
+    this.inputs.forEach((input) => {
+      if (input.name){
+        input.name = '';
+      }
+    })
+  }
+
+  // смена надписи кнопки при загрузки данных на сервер
+  renderLoading(loading){
+    if(loading){
+      this._buttonSubmitForm.textContent = 'Сохранение...';
+    } else {
+      this._buttonSubmitForm.textContent = 'Сохранили';
+    }
+  };
+
   // слушатель клика иконки закрытия попапа
   setEventListeners(){
 
     this._form.addEventListener('submit', (evt) => {
       this._submitHandler(evt, this._getInputValues());
-
-      this._buttonSubmitForm.textContent = 'Сохранение...';
     });
+
     super.setEventListeners();
   }
 }
